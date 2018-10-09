@@ -1,4 +1,17 @@
 <!DOCTYPE html>
+
+   <?php
+		session_start();
+	   /* Inclusion du fichier de fonctions */
+		include('Fonction/cobdd.php');
+		include("Fonction/Identifiant.php");
+		/* connexion a la bdd */
+	   connection();
+	
+	?> 
+
+
+
 <html lang="en">
 
   <head>
@@ -26,21 +39,6 @@
 
   </head>
 
-  	   <?php
-			session_start();
-		   /* Inclusion du fichier de fonctions */
-			include('Fonction/cobdd.php');
-			include("Fonction/Identifiant.php");
-			/* connexion a la bdd */
-		   connection();
-		
-		/* Verification du niveau d'accès */
-			if($_SESSION['Level'] == NULL){
-				$_SESSION['Level'] = 0;
-			}
-		?> 
-  
-  
   <body id="page-top">
   
   
@@ -65,7 +63,8 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Contact</a>
             </li>
 			<?php
-			if ($_SESSION['Level'] != 1)
+			
+			if (!isset ($_SESSION["level"]))
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formco.php">Connexion</a>
@@ -169,10 +168,10 @@
         <hr class="star-light mb-5">
         <div class="row">
           <div class="col-lg-4 ml-auto">
-            <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum, evida ullamcorper, velit nibh finibus lorem, id aliquet elit metus eu libero. Cras semper libero non ullamcorper tempus.</p>
           </div>
           <div class="col-lg-4 mr-auto">
-            <p class="lead">Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum, erat vitae vulputar tellus, in pretium purus luctus quis. Nulla sit amet diam in mi sodales viverra et facilisis purus. Etiam ti</p>
           </div>
         </div>
         <div class="text-center mt-4">
