@@ -64,6 +64,14 @@
             </li>
 			<?php
 			
+			if ($_SESSION['level']==2){
+				
+				echo '<li class="nav-item mx-0 mx-lg-1">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formajout.php">Ajout</a>
+				</li>';	
+			}
+			
+			
 			if (!isset ($_SESSION["level"]))
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
@@ -97,6 +105,8 @@
         <h2 class="text-center text-uppercase text-secondary mb-0">Mes Projets</h2>
         <hr class="star-dark mb-5">
         <div class="row">
+		
+		
           <div class="col-md-6 col-lg-4">
             <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
               <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
@@ -157,6 +167,8 @@
               <img class="img-fluid" src="img/portfolio/submarine.png" alt="">
             </a>
           </div>
+		  
+		  
         </div>
       </div>
     </section>
