@@ -1,24 +1,24 @@
 <?php
 
 	session_start();
-if($_SESSION['level'] != 2){
+if($_SESSION['Level'] != 2){
 	
-	
+	header('Location:../index.php');
 }
 
 
 ?>
 <html>
-    <head><title>Ajout</title></head>
+    <head><title>Edition/suppression</title></head>
     <body>
-        <h1>Remplir les champs</h1>
+        <h1>modifier les champs</h1>
 
-        <form name="inscription" method="post" action="../Fonction/ajout.php">
+        <form name="inscription" method="post" action="../Fonction/modif.php">
 		
-            Entrez le titre : <input type="text" name="titre"/> <br/>
-            Entrez le chapo : <input type="text" name="chapo"/><br/>
-			Entrez le contenu : <input type="text" name="contenu"/><br/>
-			Entrez l'image associée : <input type="text" name="image"/><br/>
+            Modifier le titre : <input type="text" name="titre"/> <br/>
+            Modifier le chapo : <input type="text" name="chapo"/><br/>
+			Modifier le contenu : <input type="text" name="contenu"/><br/>
+			Modifier l'image associée : <input type="text" name="image"/><br/>
 			
             <input type="submit" name="valider" value="OK"/>
         </form>

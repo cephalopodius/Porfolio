@@ -55,7 +55,7 @@
 						$message = '<p>Bienvenue '.$data['prenom'].', 
 							vous êtes maintenant connecté!</p>
 							<p>Cliquez <a href="../index.php">ici</a> 
-							pour revenir à la page d accueil</p>';  
+							pour revenir à la page d accueil   '.$_SESSION['Level'].'</p>';  
 						
 			
 					}
