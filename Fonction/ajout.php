@@ -7,7 +7,7 @@
 			
 				$message='';
 				
-				if($_SESSION['level'] != 2){
+				if($_SESSION['Level'] != 2){
 					
 					header('Location:../index.php');
 				}
@@ -30,20 +30,6 @@
 					
 				
 					
-					/*$req = $bdd->prepare('INSERT INTO blog(id_Blog,Titre, date, Chapo, Contenu, image,id_Admin) VALUES("",:Titre, NOW(), :Chapo, :Contenu, :image, :id_Admin)');
-
-					$req->execute(array(
-
-					'Titre' => $_POST['titre'],
-
-					'Chapo' => $_POST['chapo'],
-
-					'Contenu' => $_POST['contenu'],
-
-					'image' => 'cabin.png',
-					
-					'id_admin' => 1
-					));*/
 					$message = '<p>blog ajouté
 					<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
 									

@@ -42,12 +42,12 @@
 						
 						if($data['id_Admin']== 1){
 							
-							$_SESSION['level'] = 2;	
+							$_SESSION['Level'] = 2;	
 							
 						
 						}else{
 							
-						$_SESSION['level'] = 1;						
+						$_SESSION['Level'] = 1;						
 						
 						}
 						
