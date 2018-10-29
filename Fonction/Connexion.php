@@ -15,7 +15,7 @@
 				}
 				else //On check le mot de passe
 				{
-					$query=$db->prepare('SELECT Mail , Password , prenom FROM User WHERE Mail = :mail AND Password = :password');
+					$query=$db->prepare('SELECT Mail, id_Admin , Password , prenom FROM User WHERE Mail = :mail AND Password = :password');
 					$query->bindValue(':mail',$_POST['mail'], PDO::PARAM_STR);
 					$query->bindValue(':password',$_POST['password'], PDO::PARAM_STR);				
 					$query->execute();
@@ -30,17 +30,34 @@
 					echo $test2;
 							
 					*/	
-						
+					
+					
+					
+					
+					
 					if ($data['Mail'] == ($_POST['mail']) && $data['Password'] == ($_POST['password'])) // Acces OK !
 					{
-						$_SESSION['Level'] = 1;
 						
-						$_SESSION['prenom'] = $data['prenom'];
+
 						
+						if($data['id_Admin']== 1){
+							
+							$_SESSION['Level'] = 2;	
+							
+						
+						}else{
+							
+						$_SESSION['Level'] = 1;						
+						
+						}
+						
+						$_SESSION['prenom'] = $data['prenom'];						
 						$message = '<p>Bienvenue '.$data['prenom'].', 
 							vous êtes maintenant connecté!</p>
 							<p>Cliquez <a href="../index.php">ici</a> 
-							pour revenir à la page d accueil</p>';  
+							pour revenir à la page d accueil   '.$_SESSION['Level'].'</p>';  
+						
+			
 					}
 					else // Acces pas OK !
 					{
