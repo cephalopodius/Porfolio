@@ -299,10 +299,22 @@
                 <p class="mb-5"><?= $aBlog['Contenu'] ?></p>
 				
 				     <!-- Commentaire -->
-          			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog']) { ?>
+          			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] && $aCom['Validation'] == 1) { ?>
                     <p class="mb-5"><?= $aCom['TextCom'] ?></p>
                   <?php } ?>
-					 	 
+				  <!-- Rajout de commentaire par visiteur -->
+					<?php 	 
+					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
+						   <form name="inscription" method="post" action="Fonction/AddCom.php">
+							
+							Saississez votre commentaire <input type="text" name="Com" size="120" /> <br/>
+
+							<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
+							
+							<input type="submit" name="valider" value="Commenter"/>
+						</form>
+							 
+						 <?php } ?>
                 <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                   <i class="fa fa-close"></i>
                   Fermer le projet</a>
