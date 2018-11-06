@@ -18,6 +18,12 @@ h6 {
   font-family: 'Montserrat';
 }
 
+.comspace {
+
+ border-width:1px;
+ border-style:inset;
+ border-color:black;
+}
 hr.star-light,
 hr.star-dark {
   max-width: 15rem;

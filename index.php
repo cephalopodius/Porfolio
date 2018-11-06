@@ -22,7 +22,7 @@
     <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="css/freelancer.min.css" rel="stylesheet">
+    <link href="css/freelancer.css" rel="stylesheet">
 
   </head>
 
@@ -39,7 +39,7 @@
 		   connection();
 
 		/* Verification du niveau d'accès */
-			if($_SESSION['Level'] == NULL){
+			if(!isset($_SESSION['Level'])){
 				$_SESSION['Level'] = 0;
 			}
 			
@@ -47,10 +47,14 @@
 		  $query=$db->prepare('SELECT Titre, Chapo, Contenu, id_Blog, image FROM blog');
 		  $query->execute();
 		  $aAllBlog = $query->fetchAll();
-
-		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire');	
+		/* Requête pour visuel com*/
+		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire WHERE Validation = 1');	
 		  $query->execute();
 		  $aAllCom = $query->fetchAll();
+		  /* Requête pour visuel user*/
+		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');	
+		  $query->execute();
+		  $aAllUser = $query->fetchAll();
       ?>
 
 
@@ -292,22 +296,36 @@
           <div class="container text-center">
             <div class="row">
               <div class="col-lg-8 mx-auto">
-                <h2 class="text-secondary text-uppercase mb-0"><?= $aBlog['Titre'] ?></h2>
+                <h1 class="text-secondary text-uppercase mb-0"><?= $aBlog['Titre'] ?></h1>
                 <hr class="star-dark mb-5">
 				<h2 class="text-secondary text-uppercase mb-0"><?= $aBlog['Chapo'] ?></h2>
                 <img class="img-fluid mb-5" src="<?= $aBlog['image'] ?>" alt="">
-                <p class="mb-5"><?= $aBlog['Contenu'] ?></p>
-				
+                <p class="mb-10"><?= $aBlog['Contenu'] ?></p>
+				 <div class="col-md-12 comspace">Espace commentaire<br/>
 				     <!-- Commentaire -->
-          			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] && $aCom['Validation'] == 1) { ?>
-                    <p class="mb-5"><?= $aCom['TextCom'] ?></p>
+          			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
+						
+						<?php foreach ($aAllUser as $aUser){
+						  if($aUser['id_User'] == $aCom['id_User']){
+							echo '
+							<div class="row comspace">
+						  <div class="col-md-3">De '.$aUser['nom']. ' le '.$aCom['Datecom'].' </div>
+						  <div class="col-md-9">' .$aCom['TextCom']. '</div>
+						  </div>';
+
+						}}?>
+						
+				
+
                   <?php } ?>
 				  <!-- Rajout de commentaire par visiteur -->
 					<?php 	 
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
 						   <form name="inscription" method="post" action="Fonction/AddCom.php">
 							
-							Saississez votre commentaire <input type="text" name="Com" size="120" /> <br/>
+							Saississez votre commentaire <br/>
+							
+							<textarea name="Com" rows="10" cols="30"></textarea>
 
 							<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
 							
@@ -315,6 +333,8 @@
 						</form>
 							 
 						 <?php } ?>
+						 
+						 </div>
                 <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                   <i class="fa fa-close"></i>
                   Fermer le projet</a>
