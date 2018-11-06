@@ -15,7 +15,7 @@
 				}
 				else //On check le mot de passe
 				{
-					$query=$db->prepare('SELECT Mail, id_Admin , Password , prenom FROM User WHERE Mail = :mail AND Password = :password');
+					$query=$db->prepare('SELECT Mail, id_User , id_Admin ,Password ,prenom FROM User WHERE Mail = :mail AND Password = :password');
 					$query->bindValue(':mail',$_POST['mail'], PDO::PARAM_STR);
 					$query->bindValue(':password',$_POST['password'], PDO::PARAM_STR);				
 					$query->execute();
@@ -56,7 +56,7 @@
 							vous êtes maintenant connecté!</p>
 							<p>Cliquez <a href="../index.php">ici</a> 
 							pour revenir à la page d accueil   '.$_SESSION['Level'].'</p>';  
-						
+						$_SESSION['id_User'] = $data['id_User'];
 			
 					}
 					else // Acces pas OK !
