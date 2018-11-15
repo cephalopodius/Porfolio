@@ -13,21 +13,25 @@
 		$query->execute();
 		$data=$query->fetch();
 		
-		for ($data['id_Blog'] =< $i ; i++) 
-		{
+		ListingBlog(){
+					 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
+						
+						<?php foreach ($aAllUser as $aUser){
+						  if($aUser['id_User'] == $aCom['id_User']){
+							echo '
+							<div class="row comspace">
+						  <div class="col-md-3">De '.$aUser['nom']. ' le '.$aCom['Datecom'].' </div>
+						  <div class="col-md-9">' .$aCom['TextCom']. '</div>
+						  </div>';
+
+						}}?>
+						
+				
+
+                  <?php } ?>
 			
-			echo '<div class="col-md-6 col-lg-4">
-            <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-1">
-              <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
-                <div class="portfolio-item-caption-content my-auto w-100 text-center text-white">
-                  <i class="fas fa-search-plus fa-3x"></i>
-                </div>
-              </div>
-              <img class="img-fluid" src="'$img'" alt="">
-            </a>
-          </div>';
-		
 		}
+
 	
 		
 		?>
