@@ -4,7 +4,7 @@
 				include('cobdd.php');
 				include("Identifiant.php");
 				require("blog.php");
-				connection();
+
 
 				$message='';
 
@@ -21,7 +21,7 @@
 				}
 				else //insertion bdd
 				{
-					$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],['image'],1);
+					$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],1);
 
 
 

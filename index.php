@@ -28,31 +28,32 @@
 
   	   <?php
 			session_start();
-			
-			
-	
-			
+
+
+
+
 		   /* Inclusion du fichier de fonctions */
 			include('Fonction/cobdd.php');
 			include("Fonction/Identifiant.php");
 			/* connexion a la bdd */
-		   connection();
+      $db = new Connection();
+		   $db = $db->openConnection();
 
 		/* Verification du niveau d'accès */
 			if(!isset($_SESSION['Level'])){
 				$_SESSION['Level'] = 0;
 			}
-			
+
 		/* Requête pour visuel blog*/
 		  $query=$db->prepare('SELECT Titre, Chapo, Contenu, id_Blog, image FROM blog');
 		  $query->execute();
 		  $aAllBlog = $query->fetchAll();
 		/* Requête pour visuel com*/
-		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire WHERE Validation = 1');	
+		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire WHERE Validation = 1');
 		  $query->execute();
 		  $aAllCom = $query->fetchAll();
 		  /* Requête pour visuel user*/
-		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');	
+		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');
 		  $query->execute();
 		  $aAllUser = $query->fetchAll();
       ?>
@@ -89,12 +90,12 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formco.php">Connexion</a>
             </li>';
 			}
-			else {				
+			else {
 				echo '<li class="nav-item mx-0 mx-lg-1">
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Fonction/Deconnexion.php">Deconnexion</a>
             </li>';
 			}
-			
+
 			if ($_SESSION['Level'] == 2)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
@@ -104,7 +105,7 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formedit.php">Editer</a>
             </li>';
 			}
-			
+
 
 			?>
           </ul>
@@ -304,7 +305,7 @@
 				 <div class="col-md-12 comspace">Espace commentaire<br/>
 				     <!-- Commentaire -->
           			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
-						
+
 						<?php foreach ($aAllUser as $aUser){
 						  if($aUser['id_User'] == $aCom['id_User']){
 							echo '
@@ -314,26 +315,26 @@
 						  </div>';
 
 						}}?>
-						
-				
+
+
 
                   <?php } ?>
 				  <!-- Rajout de commentaire par visiteur -->
-					<?php 	 
+					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
 						   <form name="inscription" method="post" action="Fonction/AddCom.php">
-							
+
 							Saississez votre commentaire <br/>
-							
+
 							<textarea name="Com" rows="10" cols="30"></textarea>
 
 							<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
-							
+
 							<input type="submit" name="valider" value="Commenter"/>
 						</form>
-							 
+
 						 <?php } ?>
-						 
+
 						 </div>
                 <a class="btn btn-primary btn-lg rounded-pill portfolio-modal-dismiss" href="#">
                   <i class="fa fa-close"></i>
