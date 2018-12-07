@@ -38,7 +38,6 @@ if($_SESSION['Level'] != 2){
             <input type="submit" name="valider" value="Editer"/>
         </form>
 
-
 		  <form name="inscription" method="post" action="../Fonction/Suppression.php">
 			Ecrire EFFACER pour supprimer: <input type="text" name="Validation" size="20" /> <br/>
 			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>

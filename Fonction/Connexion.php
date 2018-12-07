@@ -32,10 +32,6 @@
 
 					*/
 
-
-
-
-
 					if ($data['Mail'] == ($_POST['mail']) && $data['Password'] == ($_POST['password'])) // Acces OK !
 					{
 
