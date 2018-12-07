@@ -29,9 +29,6 @@
   	   <?php
 			session_start();
 
-
-
-
 		   /* Inclusion du fichier de fonctions */
 			include('Fonction/cobdd.php');
 			include("Fonction/Identifiant.php");
@@ -58,11 +55,7 @@
 		  $aAllUser = $query->fetchAll();
       ?>
 
-
-
   <body id="page-top">
-
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
@@ -105,7 +98,6 @@
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formedit.php">Editer</a>
             </li>';
 			}
-
 
 			?>
           </ul>
@@ -316,8 +308,6 @@
 
 						}}?>
 
-
-
                   <?php } ?>
 				  <!-- Rajout de commentaire par visiteur -->
 					<?php
@@ -348,7 +338,6 @@
     <?php
     $iIndent++;
     } ?>
-
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

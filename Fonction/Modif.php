@@ -4,9 +4,7 @@
 				include('cobdd.php');
 				include("Identifiant.php");
 
-
 				$message='';
-
 
 				if($_SESSION['Level'] != 2){
 
@@ -31,14 +29,10 @@
 					$query->bindValue(':id_Blog',$_POST['id_Blog'], PDO::PARAM_STR);
 					$query->execute();
 
-
-
 					$message = '<p>blog modifié
 					<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
 
 					echo $message.'</div></body></html>';
-
-
 
 				}
 

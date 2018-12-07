@@ -4,7 +4,6 @@
 				include_once('cobdd.php');
 				include("Identifiant.php");
 
-
 				$prenom='';
 				$message='';
 				if (empty($_POST['mail']) || empty($_POST['password']) ) //Oublie d'un champ
@@ -35,12 +34,9 @@
 					if ($data['Mail'] == ($_POST['mail']) && $data['Password'] == ($_POST['password'])) // Acces OK !
 					{
 
-
-
 						if($data['id_Admin']== 1){
 
 							$_SESSION['Level'] = 2;
-
 
 						}else{
 
