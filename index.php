@@ -11,45 +11,45 @@
     <title>Porfolio</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="asset/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+    <link href="asset/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="css/freelancer.css" rel="stylesheet">
+    <link href="asset/css/freelancer.css" rel="stylesheet">
 
   </head>
 
   	   <?php
 			session_start();
 
-		   /* Inclusion du fichier de fonctions */
+
 			include('Fonction/cobdd.php');
 			include("Fonction/Identifiant.php");
-			/* connexion a la bdd */
+			/*databse connection */
       $db = new Connection();
 		   $db = $db->openConnection();
 
-		/* Verification du niveau d'accès */
+		/*checking access level */
 			if(!isset($_SESSION['Level'])){
 				$_SESSION['Level'] = 0;
 			}
 
-		/* Requête pour visuel blog*/
+		/* request for view blog*/
 		  $query=$db->prepare('SELECT Titre, Chapo, Contenu, id_Blog, image FROM blog');
 		  $query->execute();
 		  $aAllBlog = $query->fetchAll();
-		/* Requête pour visuel com*/
+		/* request for view com*/
 		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire WHERE Validation = 1');
 		  $query->execute();
 		  $aAllCom = $query->fetchAll();
-		  /* Requête pour visuel user*/
+		  /* request for view the current user*/
 		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');
 		  $query->execute();
 		  $aAllUser = $query->fetchAll();
@@ -108,7 +108,7 @@
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
       <div class="container">
-        <img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="">
+        <img class="img-fluid mb-5 d-block mx-auto" src="asset/img/profile.png" alt="">
         <h1 class="text-uppercase mb-0">Robin Campino , enchanté de vous connaitre </h1>
         <hr class="star-light">
         <h2 class="font-weight-light mb-0">Web Developer</h2>
@@ -274,7 +274,7 @@
 
     <!-- Portfolio Modals -->
 
-    <!-- Portfolio Modal boucle -->
+    <!-- Portfolio Modal motor -->
 
     <?php
     $iIndent = 0;
@@ -295,7 +295,7 @@
                 <img class="img-fluid mb-5" src="<?= $aBlog['image'] ?>" alt="">
                 <p class="mb-10"><?= $aBlog['Contenu'] ?></p>
 				 <div class="col-md-12 comspace">Espace commentaire<br/>
-				     <!-- Commentaire -->
+				     <!-- Comment-->
           			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
 
 						<?php foreach ($aAllUser as $aUser){
@@ -309,7 +309,7 @@
 						}}?>
 
                   <?php } ?>
-				  <!-- Rajout de commentaire par visiteur -->
+				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
 						   <form name="inscription" method="post" action="Fonction/AddCom.php">
@@ -340,19 +340,19 @@
     } ?>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="asset/vendor/jquery/jquery.min.js"></script>
+    <script src="asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="asset/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
     <!-- Contact Form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="asset/js/jqBootstrapValidation.js"></script>
+    <script src="asset/js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/freelancer.min.js"></script>
+    <script src="asset/js/freelancer.min.js"></script>
 
   </body>
 

@@ -1,21 +1,21 @@
-		
+
 		<?php
-		
+
 		session_start();
-			   /* Inclusion du fichier de fonctions */
+
 				include('cobdd.php');
 				include("Identifiant.php");
 				connection();
 				$i =0 ;
 				
-				
+
 		$query=$db->prepare('SELECT id_Blog, date , Titre , Chapo , Contenu , image FROM blog LIMIT 0 ,5');
 		$query->execute();
 		$data=$query->fetch();
-		
+
 		ListingBlog(){
 					 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
-						
+
 						<?php foreach ($aAllUser as $aUser){
 						  if($aUser['id_User'] == $aCom['id_User']){
 							echo '
@@ -25,13 +25,13 @@
 						  </div>';
 
 						}}?>
-						
-				
+
+
 
                   <?php } ?>
-			
+
 		}
 
-	
-		
+
+
 		?>
