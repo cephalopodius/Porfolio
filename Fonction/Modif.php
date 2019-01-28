@@ -17,7 +17,7 @@
 					Vous devez remplir tous les champs</p>
 					<p>Cliquez <a href="../Page/formajout.php">ici</a> pour revenir</p>';
 				}
-				else //modification databse
+				else //modification database
 				{
 					$db = new Connection();
 					$query=$db->openConnection()->prepare('UPDATE blog SET Titre=:Titre, date=NOW(), Chapo= :Chapo, Contenu= :Contenu, image=:image, id_Admin= :id_Admin WHERE id_Blog =:id_Blog');
