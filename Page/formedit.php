@@ -27,7 +27,7 @@ if($_SESSION['Level'] != 2){
           foreach ($aAllBlog as $aBlog) { ?>
 
 
-        <form name="inscription" method="post" action="../Fonction/controleur.php">
+        <form name="inscription" method="post" action="../controleur.php">
 			Blog numéro : <?= $aBlog['id_Blog'] ?> <br/>
       Entrez le titre : <input type="text" name="titre" size="20" value="<?= $aBlog['Titre'] ?>"/> <br/>
       Entrez le chapo : <input type="text" name="chapo" size="20" value="<?= $aBlog['Chapo'] ?>"/> <br/>
@@ -38,7 +38,7 @@ if($_SESSION['Level'] != 2){
             <input type="submit" name="valider" value="Editer"/>
         </form>
 
-		  <form name="inscription" method="post" action="../Fonction/Suppression.php">
+		  <form name="inscription" method="post" action="../controleur.php">
 			Ecrire EFFACER pour supprimer: <input type="text" name="Validation" size="20" /> <br/>
 			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
 

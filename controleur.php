@@ -1,16 +1,16 @@
 <?php
 				session_start();
 
-				include('cobdd.php');
-				include("Identifiant.php");
-				require("blogpost.php");
+				include('Fonction/cobdd.php');
+				include("Fonction/Identifiant.php");
+				require("Fonction/blogpost.php");
 
 
 				$message='';
 
 				if($_SESSION['Level'] != 2){
 
-					header('Location:../index.php');
+					header('Location:index.php');
 				}
 
 // checking which function call
@@ -33,7 +33,7 @@
 
 									$newBlog->addBlog($newBlog);
 										$message = '<p>blog ajouté
-										<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="index.php">ici</a> pour revenir</p>';
 
 										echo $message.'</div></body></html>';
 
@@ -55,7 +55,7 @@
 
 							editBlog($Titre = $_POST['titre'] , $Chapo = $_POST['chapo'] , $Contenu = $_POST['contenu'] , $image = $_POST['image'] , $id_Blog = $_POST['id_Blog']);
 							$message = '<p>blog modifié
-							<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+							<p>Cliquez <a href="index.php">ici</a> pour revenir</p>';
 
 							echo $message.'</div></body></html>';
 
@@ -69,7 +69,7 @@
 
 										deleteblog();
 										$message = '<p>blog supprimé
-										<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="index.php">ici</a> pour revenir</p>';
 
 										echo $message.'</div></body></html>';
 
