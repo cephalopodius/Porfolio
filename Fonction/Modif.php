@@ -1,6 +1,6 @@
 <?php
 				session_start();
-			   /* Inclusion du fichier de fonctions */
+
 				include('cobdd.php');
 				include("Identifiant.php");
 
@@ -11,13 +11,13 @@
 					header('Location:../index.php');
 				}
 
-				if (empty($_POST['titre']) || empty($_POST['chapo']) || empty($_POST['contenu']) || empty($_POST['image'])) //Oublie d'un champ
+				if (empty($_POST['titre']) || empty($_POST['chapo']) || empty($_POST['contenu']) || empty($_POST['image'])) //checking void field
 				{
 					$message = '<p>une erreur s\'est produite pendant votre saisie.
 					Vous devez remplir tous les champs</p>
 					<p>Cliquez <a href="../Page/formajout.php">ici</a> pour revenir</p>';
 				}
-				else //modification bdd
+				else //modification database
 				{
 					$db = new Connection();
 					$query=$db->openConnection()->prepare('UPDATE blog SET Titre=:Titre, date=NOW(), Chapo= :Chapo, Contenu= :Contenu, image=:image, id_Admin= :id_Admin WHERE id_Blog =:id_Blog');

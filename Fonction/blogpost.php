@@ -18,10 +18,7 @@ include_once('cobdd.php');
       $this->Contenu = $Contenu;
       $this->Image = $Image;
       $this->id_Admin = $id_Admin;
-
     }
-
-
 
     public function addBlog($currentBlog){
 			try{
@@ -39,6 +36,40 @@ include_once('cobdd.php');
 			    echo "There is some problem in connection: " . $e->getMessage();
 			}
     }
-	}
 
+
+		public function editBlog($Titre,$Chapo,$Contenu,$image,$id_Blog){
+			try{
+					$db = new Connection();
+					$query=$db->openConnection()->prepare('UPDATE blog SET Titre=:Titre, date=NOW(), Chapo= :Chapo, Contenu= :Contenu, image=:image, id_Admin= :id_Admin WHERE id_Blog =:id_Blog');
+					$query->bindParam(':Titre',$Titre, PDO::PARAM_STR);
+					$query->bindParam(':Chapo',$Chapo, PDO::PARAM_STR);
+					$query->bindParam(':Contenu',$Contenu, PDO::PARAM_STR);
+					$query->bindParam(':image',$image, PDO::PARAM_STR);
+					$query->bindParam(':id_Admin',1, PDO::PARAM_INT);
+					$query->bindParam(':id_Blog', $id_Blog, PDO::PARAM_STR);
+					$query->execute();
+
+				}
+
+			catch (PDOException $e)
+			{
+					echo "There is some problem in connection: " . $e->getMessage();
+			}
+		}
+
+
+		public function deleteBlog(){
+			try{
+				$query=$db->prepare('DELETE FROM blog WHERE id_Blog = :id_Blog');
+				$query->bindValue(':id_Blog',$id_blog, PDO::PARAM_STR);
+				$query->execute();
+			}
+
+			catch(PDOException $e)
+			{
+					echo "There is some problem in connection: " . $e->getMessage();
+			}
+		}
+}
 ?>

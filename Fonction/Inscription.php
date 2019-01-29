@@ -1,6 +1,6 @@
 <?php
 				session_start();
-			   /* Inclusion du fichier de fonctions */
+
 				include('cobdd.php');
 				include("Identifiant.php");
 				connection();
@@ -12,13 +12,13 @@
 					header('Location:../index.php');
 				}
 
-				if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['Mail']) || empty($_POST['Password'])) //Oublie d'un champ
+				if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['Mail']) || empty($_POST['Password'])) //checking void field
 				{
 					$message = '<p>une erreur s\'est produite pendant votre saisie.
 					Vous devez remplir tous les champs</p>
 					<p>Cliquez <a href="../Page/formajout.php">ici</a> pour revenir</p>';
 				}
-				else //insertion bdd
+				else //add to databse
 				{
 					$query=$db->prepare('INSERT INTO user(nom, prenom, Mail, Password) VALUES(:nom, :prenom, :Mail, :Password)');
 					$query->bindValue(':nom',$_POST['nom'], PDO::PARAM_STR);
