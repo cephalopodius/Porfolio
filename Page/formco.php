@@ -3,7 +3,11 @@
     <body>
         <h1>Identifiez-vous</h1>
         <h2>Rentrez vos identifiant</h2>
+<<<<<<< master
         <form name="inscription" method="post" action="../repository/Connexion.php">
+=======
+        <form name="inscription" method="post" action="../Repository/Connexion.php">
+>>>>>>> editpost
 
             Entrez votre adresse mail : <input type="mail" name="mail"/> <br/>
             Entrez votre mot de passe : <input type="password" name="password"/><br/>

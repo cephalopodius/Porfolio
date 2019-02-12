@@ -9,15 +9,17 @@ include_once('cobdd.php');
 		public $Contenu;
 		public $Image;
     public $id_Admin;
+		public $id_Blog;
 
 
-    public function __construct($Titre,$Chapo,$Contenu,$Image,$id_Admin){
+    public function __construct($Titre,$Chapo,$Contenu,$Image,$id_Admin,$id_Blog){
 
       $this->Titre = $Titre;
       $this->Chapo = $Chapo;
       $this->Contenu = $Contenu;
       $this->Image = $Image;
       $this->id_Admin = $id_Admin;
+			$this->id_Blog = $id_Blog;
     }
 
     public function addBlog($currentBlog){
@@ -37,6 +39,7 @@ include_once('cobdd.php');
 			}
     }
 
+<<<<<<< master:Fonction/blogpost.php
 
 		public function editBlog($Titre,$Chapo,$Contenu,$image,$id_Blog){
 			try{
@@ -48,6 +51,18 @@ include_once('cobdd.php');
 					$query->bindParam(':image',$image, PDO::PARAM_STR);
 					$query->bindParam(':id_Admin',1, PDO::PARAM_INT);
 					$query->bindParam(':id_Blog', $id_Blog, PDO::PARAM_STR);
+=======
+		public function editBlog($currentBlog){
+			try{
+					$db = new Connection();
+					$query=$db->openConnection()->prepare('UPDATE blog SET Titre=:Titre, date=NOW(), Chapo= :Chapo, Contenu= :Contenu, image=:image, id_Admin= :id_Admin WHERE id_Blog =:id_Blog');
+					$query->bindParam(':Titre',$this->Titre, PDO::PARAM_STR);
+					$query->bindParam(':Chapo',$this->Chapo, PDO::PARAM_STR);
+					$query->bindParam(':Contenu',$this->Contenu, PDO::PARAM_STR);
+					$query->bindParam(':image',$this->Image, PDO::PARAM_STR);
+					$query->bindParam(':id_Admin',$this->id_Admin, PDO::PARAM_INT);
+					$query->bindParam(':id_Blog',$this->id_Blog, PDO::PARAM_STR);
+>>>>>>> editpost:Repository/blogpost.php
 					$query->execute();
 
 				}
