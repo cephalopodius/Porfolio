@@ -29,9 +29,8 @@
   	   <?php
 			session_start();
 
-
-			include('Fonction/cobdd.php');
-			include("Fonction/Identifiant.php");
+			include('repository/cobdd.php');
+			include("repository/Identifiant.php");
 			/*databse connection */
       $db = new Connection();
 		   $db = $db->openConnection();
@@ -80,22 +79,22 @@
 			if ($_SESSION['Level'] == 0)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formco.php">Connexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formco.php">Connexion</a>
             </li>';
 			}
 			else {
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Fonction/Deconnexion.php">Deconnexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="controleur/Deconnexion.php">Deconnexion</a>
             </li>';
 			}
 
 			if ($_SESSION['Level'] == 2)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formajout.php">Ajout</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formajout.php">Ajout</a>
             </li>';
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formedit.php">Editer</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formedit.php">Editer</a>
             </li>';
 			}
 
@@ -312,7 +311,7 @@
 				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
-						   <form name="inscription" method="post" action="Fonction/AddCom.php">
+						   <form name="inscription" method="post" action="controleur/AddCom.php">
 
 							Saississez votre commentaire <br/>
 
