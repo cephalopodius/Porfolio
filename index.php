@@ -29,9 +29,13 @@
   	   <?php
 			session_start();
 
+			include('repository/cobdd.php');
+			include("repository/Identifiant.php");
+      include('repository/blogpost.php');
+      include("repository/ComRepository.php");
 
-			include('Fonction/cobdd.php');
-			include("Fonction/Identifiant.php");
+
+
 			/*databse connection */
       $db = new Connection();
 		   $db = $db->openConnection();
@@ -41,14 +45,13 @@
 				$_SESSION['Level'] = 0;
 			}
 
-		/* request for view blog*/
-		  $query=$db->prepare('SELECT Titre, Chapo, Contenu, id_Blog, image FROM blog');
-		  $query->execute();
-		  $aAllBlog = $query->fetchAll();
-		/* request for view com*/
-		  $query=$db->prepare('SELECT Datecom, TextCom, Validation, id_Blog, id_User FROM commentaire WHERE Validation = 1');
-		  $query->execute();
-		  $aAllCom = $query->fetchAll();
+		$BlogRepository = new blogRepository();
+    $ComRepository = new ComRepository();
+
+    $blogList = $BlogRepository->getAllBlog();
+    $comList = $ComRepository->getAllCom();
+
+
 		  /* request for view the current user*/
 		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');
 		  $query->execute();
@@ -80,22 +83,22 @@
 			if ($_SESSION['Level'] == 0)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formco.php">Connexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formco.php">Connexion</a>
             </li>';
 			}
 			else {
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Fonction/Deconnexion.php">Deconnexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="controleur/Deconnexion.php">Deconnexion</a>
             </li>';
 			}
 
 			if ($_SESSION['Level'] == 2)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formajout.php">Ajout</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formajout.php">Ajout</a>
             </li>';
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="Page/formedit.php">Editer</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="page/formedit.php">Editer</a>
             </li>';
 			}
 
@@ -123,7 +126,7 @@
         <div class="row">
           <?php
           $iIndent = 0;
-          foreach ($aAllBlog as $aBlog) { ?>
+          foreach ($blogList as $aBlog) { ?>
             <div class="col-md-6 col-lg-4">
               <a class="portfolio-item d-block mx-auto" href="#portfolio-modal-<?= $iIndent ?>">
                 <div class="portfolio-item-caption d-flex position-absolute h-100 w-100">
@@ -131,7 +134,7 @@
                     <i class="fas fa-search-plus fa-3x"></i>
                   </div>
                 </div>
-                <img class="img-fluid" src="<?= $aBlog['image'] ?>" alt="">
+                <img class="img-fluid" src="<?= $aBlog->getImage() ?>" alt="">
               </a>
             </div>
           <?php
@@ -278,8 +281,7 @@
 
     <?php
     $iIndent = 0;
-
-    foreach ($aAllBlog as $aBlog) { ?>
+    foreach ($blogList as $aBlog) { ?>
 
       <div class="portfolio-modal mfp-hide" id="portfolio-modal-<?= $iIndent ?>">
         <div class="portfolio-modal-dialog bg-white">
@@ -289,36 +291,36 @@
           <div class="container text-center">
             <div class="row">
               <div class="col-lg-8 mx-auto">
-                <h1 class="text-secondary text-uppercase mb-0"><?= $aBlog['Titre'] ?></h1>
+                <h1 class="text-secondary text-uppercase mb-0"><?= $aBlog->getTitre() ?></h1>
                 <hr class="star-dark mb-5">
-				<h2 class="text-secondary text-uppercase mb-0"><?= $aBlog['Chapo'] ?></h2>
-                <img class="img-fluid mb-5" src="<?= $aBlog['image'] ?>" alt="">
-                <p class="mb-10"><?= $aBlog['Contenu'] ?></p>
+				<h2 class="text-secondary text-uppercase mb-0"><?= $aBlog->getChapo() ?></h2>
+                <img class="img-fluid mb-5" src="<?= $aBlog->getImage() ?>" alt="">
+                <p class="mb-10"><?= $aBlog->getContenu() ?></p>
 				 <div class="col-md-12 comspace">Espace commentaire<br/>
 				     <!-- Comment-->
-          			 <?php foreach ($aAllCom as $aCom)  if ($aCom['id_Blog'] == $aBlog['id_Blog'] ) { ?>
+
+          			<?php foreach ($comList as $aCom){
+                   if ($aCom->getIdBlog() == $aBlog->getIdBlog() ){  ?>
 
 						<?php foreach ($aAllUser as $aUser){
-						  if($aUser['id_User'] == $aCom['id_User']){
+						  if($aUser['id_User'] == $aCom->getIdUser()){
 							echo '
 							<div class="row comspace">
-						  <div class="col-md-3">De '.$aUser['nom']. ' le '.$aCom['Datecom'].' </div>
-						  <div class="col-md-9">' .$aCom['TextCom']. '</div>
+						  <div class="col-md-3">De '.$aUser['nom']. ' le '.$aCom->getDateCom().' </div>
+						  <div class="col-md-9">' .$aCom->getTextCom(). '</div>
 						  </div>';
 
-						}}?>
-
-                  <?php } ?>
+						}}}} ?>
 				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
-						   <form name="inscription" method="post" action="Fonction/AddCom.php">
+						   <form name="inscription" method="post" action="controleur/controleurCommentaire.php">
 
 							Saississez votre commentaire <br/>
 
 							<textarea name="Com" rows="10" cols="30"></textarea>
 
-							<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
+							<input type="hidden" name="id_Blog" value="<?= $aBlog->getIdBlog() ?>"/><br/>
 
 							<input type="submit" name="valider" value="Commenter"/>
 						</form>
@@ -337,7 +339,7 @@
 
     <?php
     $iIndent++;
-    } ?>
+  } ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="asset/vendor/jquery/jquery.min.js"></script>

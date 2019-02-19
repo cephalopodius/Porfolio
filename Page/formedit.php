@@ -6,8 +6,9 @@ if($_SESSION['Level'] != 2){
 
 }
 		   /* Inclusion du fichier de fonctions */
-			include('../Fonction/cobdd.php');
-			include("../Fonction/Identifiant.php");
+			include('../repository/cobdd.php');
+			include("../repository/Identifiant.php");
+
 			/* connexion a la bdd */
 
 		   $db = new Connection();
@@ -17,7 +18,7 @@ if($_SESSION['Level'] != 2){
 
 ?>
 <html>
-    <head><title>Ajout</title></head>
+    <head><title>Edition/Suppression</title></head>
     <body>
         <h1>Remplir les champs</h1>
 
@@ -26,22 +27,21 @@ if($_SESSION['Level'] != 2){
           $iIndent = 0;
           foreach ($aAllBlog as $aBlog) { ?>
 
-
-        <form name="inscription" method="post" action="../controleur.php">
+        <form name="edit-blog-<?= $iIndent ?>" method="post" action="../controleur/controleur.php">
 			Blog numéro : <?= $aBlog['id_Blog'] ?> <br/>
       Entrez le titre : <input type="text" name="titre" size="20" value="<?= $aBlog['Titre'] ?>"/> <br/>
       Entrez le chapo : <input type="text" name="chapo" size="20" value="<?= $aBlog['Chapo'] ?>"/> <br/>
 			Entrez le contenu : <input type="text" name="contenu" size="80" value="<?= $aBlog['Contenu'] ?>"/> <br/>
 			Entrez l'image associée : <input type="text" name="image" value="<?= $aBlog['image'] ?>"/><br/>
-			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
-			<input type="hidden" name="type" value="editblog"/><br/>
+			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/>
+			<input type="hidden" name="type" value="editblog"/>
             <input type="submit" name="valider" value="Editer"/>
         </form>
 
-		  <form name="inscription" method="post" action="../controleur.php">
+		  <form name="delete" method="post" action="../controleur/controleurblogpost.php">
 			Ecrire EFFACER pour supprimer: <input type="text" name="Validation" size="20" /> <br/>
 			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
-
+			<input type="hidden" name="type" value="deleteblog"/>
             <input type="submit" name="valider" value="Supprimer"/>
         </form>
 
