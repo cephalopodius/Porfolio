@@ -38,11 +38,7 @@ if($_SESSION['Level'] != 2){
             <input type="submit" name="valider" value="Editer"/>
         </form>
 
-<<<<<<< master
 		  <form name="delete" method="post" action="../controleur/controleur.php">
-=======
-		  <form name="delete" method="post" action="../Controleur/controleur.php">
->>>>>>> editpost
 			Ecrire EFFACER pour supprimer: <input type="text" name="Validation" size="20" /> <br/>
 			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
 			<input type="hidden" name="type" value="deleteblog"/>

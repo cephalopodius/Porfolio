@@ -18,11 +18,7 @@ if($_SESSION['Level'] != 2){
       Modifier le chapo : <input type="text" name="chapo"/><br/>
 			Modifier le contenu : <input type="text" name="contenu"/><br/>
 			Modifier l'image associée : <input type="text" name="image"/><br/>
-<<<<<<< master
 
-=======
-		
->>>>>>> editpost
 			<input type="hidden" name="type" value="addblog"/>
 
             <input type="submit" name="valider" value="OK"/>

@@ -1,16 +1,10 @@
 <?php
 				session_start();
 
-<<<<<<< master:controleur/controleurblogpost.php
 				include("../repository/cobdd.php");
 				include("../repository/Identifiant.php");
 				include("../model/Blog.php");
 				require("../repository/blogpost.php");
-=======
-				include("../Repository/cobdd.php");
-				include("../Repository/Identifiant.php");
-				require("../Repository/blogpost.php");
->>>>>>> editpost:Controleur/controleur.php
 
 
 				$message='';
@@ -35,7 +29,7 @@
 									}
 									else //add to database
 									{
-										$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],1,1);
+										$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],'',1,1);
 
 										$Repository->addBlog($newBlog);
 										$message = '<p>blog ajouté
@@ -53,21 +47,13 @@
 				{
 					$message = '<p>une erreur s\'est produite pendant votre saisie.
 					Vous devez remplir tous les champs</p>
-<<<<<<< master:controleur/controleurblogpost.php
 					<p>Cliquez <a href="../page/formajout.php">ici</a> pour revenir</p>';
-=======
-					<p>Cliquez <a href="../Page/formajout.php">ici</a> pour revenir</p>';
->>>>>>> editpost:Controleur/controleur.php
 				}
 				//modification database
 				else
 				{
-							$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],1,$_POST['id_Blog']);
-<<<<<<< master:controleur/controleurblogpost.php
+							$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],'',1,$_POST['id_Blog']);
 							$Repository->editBlog($newBlog);
-=======
-							$newBlog->editBlog($newBlog);
->>>>>>> editpost:Controleur/controleur.php
 							$message = '<p>blog modifié
 							<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
 
