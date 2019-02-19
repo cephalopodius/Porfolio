@@ -68,7 +68,8 @@ include_once('/../model/Blog.php');
 
 		public function deleteBlog($id){
 			try{
-				$query=$db->prepare('DELETE FROM blog WHERE id_Blog = :id_Blog');
+				$db = new Connection();
+				$query=$db->openConnection()->prepare('DELETE FROM blog WHERE id_Blog = :id_Blog');
 				$query->bindValue(':id_Blog',$id, PDO::PARAM_STR);
 				$query->execute();
 			}
