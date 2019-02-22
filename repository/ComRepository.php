@@ -76,10 +76,5 @@ include_once('/../model/Commentaire.php');
 			}
 		}
 
-
-
-
-
-
 }
     ?>
