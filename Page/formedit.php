@@ -27,7 +27,7 @@ if($_SESSION['Level'] != 2){
           $iIndent = 0;
           foreach ($aAllBlog as $aBlog) { ?>
 
-        <form name="edit-blog-<?= $iIndent ?>" method="post" action="../controleur/controleur.php">
+        <form name="edit-blog-<?= $iIndent ?>" method="post" action="../controleur/controleurblogpost.php">
 			Blog numéro : <?= $aBlog['id_Blog'] ?> <br/>
       Entrez le titre : <input type="text" name="titre" size="20" value="<?= $aBlog['Titre'] ?>"/> <br/>
       Entrez le chapo : <input type="text" name="chapo" size="20" value="<?= $aBlog['Chapo'] ?>"/> <br/>
