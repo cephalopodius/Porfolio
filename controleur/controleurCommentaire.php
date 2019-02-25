@@ -20,7 +20,7 @@
 					}
 					else //add to database
 					{
-						//0 is for the  com's no validated statut
+
             $com = new Commentaire('',0,$_POST['Com'],'',$_SESSION['id_User'],$_POST['id_Blog']);
 				    $ComRepository->addCom($com);
 
