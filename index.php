@@ -33,6 +33,7 @@
 			include("repository/Identifiant.php");
       include('repository/blogpost.php');
       include("repository/ComRepository.php");
+      include('repository/UserRepository.php');
 
 
 
@@ -47,15 +48,11 @@
 
 		$BlogRepository = new blogRepository();
     $ComRepository = new ComRepository();
+    $UserRepository = new UserRepository();
 
+    $userList = $UserRepository->getUserList();
     $blogList = $BlogRepository->getAllBlog();
     $comList = $ComRepository->getAllCom();
-
-
-		  /* request for view the current user*/
-		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');
-		  $query->execute();
-		  $aAllUser = $query->fetchAll();
       ?>
 
   <body id="page-top">
@@ -88,7 +85,7 @@
 			}
 			else {
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="controleur/Deconnexion.php">Deconnexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="repository/Deconnexion.php">Deconnexion</a>
             </li>';
 			}
 
@@ -302,15 +299,20 @@
           			<?php foreach ($comList as $aCom){
                    if ($aCom->getIdBlog() == $aBlog->getIdBlog() ){  ?>
 
-						<?php foreach ($aAllUser as $aUser){
-						  if($aUser['id_User'] == $aCom->getIdUser()){
-							echo '
-							<div class="row comspace">
-						  <div class="col-md-3">De '.$aUser['nom']. ' le '.$aCom->getDateCom().' </div>
-						  <div class="col-md-9">' .$aCom->getTextCom(). '</div>
-						  </div>';
+						<?php foreach($userList as $aUser){
+              if ($aUser->getIdUser() == $aCom->getIdUser()){
 
-						}}}} ?>
+                echo '
+                <div class="row comspace">
+                <div class="col-md-3">De '.$aUser->getNom(). '  '.$aUser->getPrenom(). ' le '.$aCom->getDateCom().' </div>
+                <div class="col-md-9">' .$aCom->getTextCom(). '</div>
+                </div>';
+
+              }
+
+            }
+
+						}} ?>
 				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
