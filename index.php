@@ -53,6 +53,12 @@
     $userList = $UserRepository->getUserList();
     $blogList = $BlogRepository->getAllBlog();
     $comList = $ComRepository->getAllCom();
+
+
+		  /* request for view the current user*/
+		  $query=$db->prepare('SELECT prenom, nom, id_User FROM user');
+		  $query->execute();
+		  $aAllUser = $query->fetchAll();
       ?>
 
   <body id="page-top">
@@ -299,20 +305,15 @@
           			<?php foreach ($comList as $aCom){
                    if ($aCom->getIdBlog() == $aBlog->getIdBlog() ){  ?>
 
-						<?php foreach($userList as $aUser){
-              if ($aUser->getIdUser() == $aCom->getIdUser()){
+                 <?php foreach($userList as $aUser){
+                   if ($aUser->getIdUser() == $aCom->getIdUser()){
 
-                echo '
-                <div class="row comspace">
+                       echo ' <div class="row comspace">
                 <div class="col-md-3">De '.$aUser->getNom(). '  '.$aUser->getPrenom(). ' le '.$aCom->getDateCom().' </div>
                 <div class="col-md-9">' .$aCom->getTextCom(). '</div>
                 </div>';
 
-              }
-
-            }
-
-						}} ?>
+						}}}} ?>
 				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>

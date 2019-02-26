@@ -47,7 +47,7 @@
 							  }
 							  else //add to database
 							  {
-										
+
 											$user = new User('',$_POST['prenom'],$_POST['nom'],'',$_POST['mail'],$_POST['password']);
 											$UserRepository->inscription($user);
 											$message = '<p>Félicitation vous êtes inscrit !</p>
