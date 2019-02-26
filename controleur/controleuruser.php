@@ -16,7 +16,7 @@
     				{
     					$message = '<p>une erreur s\'est produite pendant votre identification.
     				Vous devez remplir tous les champs</p>
-    				<p>Cliquez <a href="../Page/formco.php">ici</a> pour revenir</p>';
+    				<p>Cliquez <a href="../page/formco.php">ici</a> pour revenir</p>';
     				}
     				else //checking password
     				{
@@ -43,7 +43,7 @@
 							  {
 							    $message = '<p>une erreur s\'est produite pendant votre saisie.
 							    Vous devez remplir tous les champs</p>
-							    <p>Cliquez <a href="../Page/formajout.php">ici</a> pour revenir</p>';
+							    <p>Cliquez <a href="../page/formajout.php">ici</a> pour revenir</p>';
 							  }
 							  else //add to database
 							  {

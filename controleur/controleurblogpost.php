@@ -4,7 +4,7 @@
 				include("../repository/cobdd.php");
 				include("../repository/Identifiant.php");
 				include("../model/Blog.php");
-				require("../repository/blogpost.php");
+				require("../repository/blogpostRepository.php");
 
 
 				$message='';
@@ -25,7 +25,7 @@
 									{
 										$message = '<p>une erreur s\'est produite pendant votre saisie.
 										Vous devez remplir tous les champs</p>
-										<p>Cliquez <a href="Page/formajout.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="page/formajout.php">ici</a> pour revenir</p>';
 									}
 									else //add to database
 									{

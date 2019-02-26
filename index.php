@@ -31,7 +31,7 @@
 
 			include('repository/cobdd.php');
 			include("repository/Identifiant.php");
-      include('repository/blogpost.php');
+      include('repository/blogpostRepository.php');
       include("repository/ComRepository.php");
       include('repository/UserRepository.php');
 
