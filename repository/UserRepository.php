@@ -39,7 +39,7 @@ include_once('/../model/User.php');
       {
         $message = "<p>Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe ou l'adresse mail entrée n\'est pas correcte.</p><p>Cliquez <a href='./connexion.php'>ici</a>
         pour revenir à la page précédente
-        <br /><br />Cliquez <a href='../index.php'>ici</a>
+        <br /><br />Cliquez <a href='../page/home.php'>ici</a>
         pour revenir à la page d accueil</p>";
       }
 
@@ -67,7 +67,7 @@ include_once('/../model/User.php');
 
         session_destroy();
 
-          header('Location:../index.php');
+          header('Location:../page/home.php');
           exit();
 
       }

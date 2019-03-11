@@ -16,7 +16,7 @@
     				{
     					$message = '<p>une erreur s\'est produite pendant votre identification.
     				Vous devez remplir tous les champs</p>
-    				<p>Cliquez <a href="../Page/formco.php">ici</a> pour revenir</p>';
+    				<p>Cliquez <a href="../page/formco.php">ici</a> pour revenir</p>';
     				}
     				else //checking password
     				{
@@ -24,7 +24,7 @@
               $UserRepository->connection($user);
 
               $message = '<p>Bonjour , vous êtes maintenant connecté
-              <p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+              <p>Cliquez <a href="page/home.php">ici</a> pour revenir</p>';
 
             }
 						  echo $message.'</div></body></html>';
@@ -36,7 +36,7 @@
 
 							  if($_SESSION['Level'] != 0){
 
-							    header('Location:../index.php');
+							    header('Location:../page/home.php');
 							  }
 
 							  if (empty($_POST['nom']) || empty($_POST['prenom']) || empty($_POST['mail']) || empty($_POST['password'])) //checking void field
@@ -51,7 +51,7 @@
 											$user = new User('',$_POST['prenom'],$_POST['nom'],'',$_POST['mail'],$_POST['password']);
 											$UserRepository->inscription($user);
 											$message = '<p>Félicitation vous êtes inscrit !</p>
-											<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+											<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
 
 							  }
 							echo $message.'</div></body></html>';

@@ -16,7 +16,7 @@
 					{
 						$message = '<p>une erreur s\'est produite pendant votre saisie.
 						Vous devez remplir le champs</p>
-						<p>Cliquez <a href="../index.php.php">ici</a> pour revenir</p>';
+						<p>Cliquez <a href="../page/home.php.php">ici</a> pour revenir</p>';
 					}
 					else //add to database
 					{
@@ -25,7 +25,7 @@
 				    $ComRepository->addCom($com);
 
 						$message = '<p>Commentaire ajouté et en attente de validation.
-						<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+						<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
 
 						echo $message.'</div></body></html>';
 
@@ -33,7 +33,7 @@
 
 				}else{
 
-						header('Location:../index.php');
+						header('Location:../page/home.php');
 				}
 
 	 ?>
