@@ -11,7 +11,7 @@
 
 				if($_SESSION['Level'] != 2){
 
-					header('Location:index.php');
+					header('Location:../page/home.php');
 				}
 				$Repository = new blogRepository();
 
@@ -33,7 +33,7 @@
 
 										$Repository->addBlog($newBlog);
 										$message = '<p>blog ajouté
-										<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
 
 									}
 											echo $message.'</div></body></html>';
@@ -55,7 +55,7 @@
 							$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],'',1,$_POST['id_Blog']);
 							$Repository->editBlog($newBlog);
 							$message = '<p>blog modifié
-							<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+							<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
 
 				}
 				echo $message.'</div></body></html>';
@@ -67,7 +67,7 @@
 
 										$Repository->deleteblog($_POST['id_Blog']);
 										$message = '<p>blog supprimé
-										<p>Cliquez <a href="../index.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
 
 								}
 							echo $message.'</div></body></html>';

@@ -1,3 +1,4 @@
+    $blogList = $BlogRepository->getAllBlog();
 <!DOCTYPE html>
 <html lang="en">
 

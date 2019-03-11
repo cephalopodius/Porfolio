@@ -3,7 +3,7 @@
 	session_start();
 if($_SESSION['Level'] != 2){
 
-	header('Location:../index.php');
+	header('Location:home.php');
 }
 
 ?>
