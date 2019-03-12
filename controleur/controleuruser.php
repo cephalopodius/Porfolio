@@ -1,10 +1,7 @@
 <?php
 				session_start();
 
-				include('../repository/cobdd.php');
-				include("../repository/Identifiant.php");
-        include('../model/User.php');
-        include('../repository/UserRepository.php');
+
 
 				$message='';
 				$prenom='';
@@ -16,7 +13,7 @@
     				{
     					$message = '<p>une erreur s\'est produite pendant votre identification.
     				Vous devez remplir tous les champs</p>
-    				<p>Cliquez <a href="../page/formco.php">ici</a> pour revenir</p>';
+    				<p>Cliquez <a href="formco.php">ici</a> pour revenir</p>';
     				}
     				else //checking password
     				{
@@ -24,7 +21,7 @@
               $UserRepository->connection($user);
 
               $message = '<p>Bonjour , vous êtes maintenant connecté
-              <p>Cliquez <a href="page/home.php">ici</a> pour revenir</p>';
+              <p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
             }
 						  echo $message.'</div></body></html>';
@@ -43,7 +40,7 @@
 							  {
 							    $message = '<p>une erreur s\'est produite pendant votre saisie.
 							    Vous devez remplir tous les champs</p>
-							    <p>Cliquez <a href="../page/formajout.php">ici</a> pour revenir</p>';
+							    <p>Cliquez <a href="formajout.php">ici</a> pour revenir</p>';
 							  }
 							  else //add to database
 							  {
@@ -51,7 +48,7 @@
 											$user = new User('',$_POST['prenom'],$_POST['nom'],'',$_POST['mail'],$_POST['password']);
 											$UserRepository->inscription($user);
 											$message = '<p>Félicitation vous êtes inscrit !</p>
-											<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
+											<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
 							  }
 							echo $message.'</div></body></html>';

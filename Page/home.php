@@ -86,17 +86,17 @@
 			}
 			else {
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="repository/Deconnexion.php">Deconnexion</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="deconnexion">Deconnexion</a>
             </li>';
 			}
 
 			if ($_SESSION['Level'] == 2)
 			{
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="ajout.php">Ajout</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="ajout">Ajout</a>
             </li>';
 				echo '<li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="formedit.php">Editer</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="edit">Editer</a>
             </li>';
 			}
 

@@ -1,7 +1,5 @@
 <?php
 
-include_once('cobdd.php');
-include_once('/../model/Blog.php');
 
 	class blogRepository{
 

@@ -29,7 +29,10 @@ namespace App\Router;
     }
 
     public function call(){
-      return call_user_func_array($this->callable, $this->matches);
+
+        return call_user_func_array($this->callable, $this->matches);
+
+
     }
   }
 

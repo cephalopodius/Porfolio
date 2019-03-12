@@ -1,6 +1,5 @@
 <?php
-include_once('cobdd.php');
-include_once('/../model/Commentaire.php');
+
 
 	class ComRepository{
 

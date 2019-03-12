@@ -12,7 +12,7 @@ if($_SESSION['Level'] != 2){
     <body>
         <h1>modifier les champs</h1>
 
-        <form name="inscription" method="post" action="../controleur/controleurblogpost.php">
+        <form name="inscription" method="post" action="controleurBlogpost">
 
       Modifier le titre : <input type="text" name="titre"/> <br/>
       Modifier le chapo : <input type="text" name="chapo"/><br/>

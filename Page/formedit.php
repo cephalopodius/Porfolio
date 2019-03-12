@@ -5,11 +5,7 @@ if($_SESSION['Level'] != 2){
 	header('Location:home.php');
 
 }
-		   /* Inclusion du fichier de fonctions */
-			include('../repository/cobdd.php');
-			include("../repository/Identifiant.php");
 
-			/* connexion a la bdd */
 
 		   $db = new Connection();
 	  $query=$db->openConnection()->prepare('SELECT Titre, Chapo, Contenu, id_Blog, image FROM blog');
@@ -27,7 +23,7 @@ if($_SESSION['Level'] != 2){
           $iIndent = 0;
           foreach ($aAllBlog as $aBlog) { ?>
 
-        <form name="edit-blog-<?= $iIndent ?>" method="post" action="../controleur/controleurblogpost.php">
+        <form name="edit-blog-<?= $iIndent ?>" method="post" action="controleurBlogpost">
 			Blog numéro : <?= $aBlog['id_Blog'] ?> <br/>
       Entrez le titre : <input type="text" name="titre" size="20" value="<?= $aBlog['Titre'] ?>"/> <br/>
       Entrez le chapo : <input type="text" name="chapo" size="20" value="<?= $aBlog['Chapo'] ?>"/> <br/>
@@ -38,7 +34,7 @@ if($_SESSION['Level'] != 2){
             <input type="submit" name="valider" value="Editer"/>
         </form>
 
-		  <form name="delete" method="post" action="../controleur/controleurblogpost.php">
+		  <form name="delete" method="post" action="controleurBlogpost">
 			Ecrire EFFACER pour supprimer: <input type="text" name="Validation" size="20" /> <br/>
 			<input type="hidden" name="id_Blog" value="<?= $aBlog['id_Blog'] ?>"/><br/>
 			<input type="hidden" name="type" value="deleteblog"/>

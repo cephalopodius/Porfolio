@@ -1,6 +1,4 @@
 <?php
-include_once('cobdd.php');
-include_once('/../model/User.php');
 
 	class UserRepository{
 

@@ -1,10 +1,7 @@
 <?php
 				session_start();
 
-				include('../repository/cobdd.php');
-				include("../repository/Identifiant.php");
-        include('../model/Commentaire.php');
-        include('../repository/ComRepository.php');
+
 
 				$message='';
         $ComRepository= new ComRepository();

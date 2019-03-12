@@ -1,17 +1,11 @@
 <?php
 				session_start();
 
-				include("../repository/cobdd.php");
-				include("../repository/Identifiant.php");
-				include("../model/Blog.php");
-				require("../repository/blogpostRepository.php");
-
-
 				$message='';
 
 				if($_SESSION['Level'] != 2){
 
-					header('Location:../page/home.php');
+					header('Location:home');
 				}
 				$Repository = new blogRepository();
 
@@ -25,7 +19,7 @@
 									{
 										$message = '<p>une erreur s\'est produite pendant votre saisie.
 										Vous devez remplir tous les champs</p>
-										<p>Cliquez <a href="page/formajout.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="ajout">ici</a> pour revenir</p>';
 									}
 									else //add to database
 									{
@@ -33,7 +27,7 @@
 
 										$Repository->addBlog($newBlog);
 										$message = '<p>blog ajouté
-										<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
 									}
 											echo $message.'</div></body></html>';
@@ -47,7 +41,7 @@
 				{
 					$message = '<p>une erreur s\'est produite pendant votre saisie.
 					Vous devez remplir tous les champs</p>
-					<p>Cliquez <a href="../page/formajout.php">ici</a> pour revenir</p>';
+					<p>Cliquez <a href="ajout">ici</a> pour revenir</p>';
 				}
 				//modification database
 				else
@@ -55,7 +49,7 @@
 							$newBlog = new Blog($_POST['titre'],$_POST['chapo'], $_POST['contenu'],$_POST['image'],'',1,$_POST['id_Blog']);
 							$Repository->editBlog($newBlog);
 							$message = '<p>blog modifié
-							<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
+							<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
 				}
 				echo $message.'</div></body></html>';
@@ -67,7 +61,7 @@
 
 										$Repository->deleteblog($_POST['id_Blog']);
 										$message = '<p>blog supprimé
-										<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
+										<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
 								}
 							echo $message.'</div></body></html>';

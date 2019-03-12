@@ -3,6 +3,6 @@ session_start();
 
 session_destroy();
 
-  header('Location:../page/home.php');
+  header('Location:home');
   exit();
 ?>
