@@ -13,16 +13,16 @@
 					{
 						$message = '<p>une erreur s\'est produite pendant votre saisie.
 						Vous devez remplir le champs</p>
-						<p>Cliquez <a href="../page/home.php.php">ici</a> pour revenir</p>';
+						<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 					}
 					else //add to database
 					{
 
-            $com = new Commentaire('',0,$_POST['Com'],'',$_SESSION['id_User'],$_POST['id_Blog']);
+            $com = new Comment('',0,$_POST['Com'],'',$_SESSION['id_User'],$_POST['id_Blog']);
 				    $ComRepository->addCom($com);
 
 						$message = '<p>Commentaire ajouté et en attente de validation.
-						<p>Cliquez <a href="../page/home.php">ici</a> pour revenir</p>';
+						<p>Cliquez <a href="home">ici</a> pour revenir</p>';
 
 						echo $message.'</div></body></html>';
 
@@ -30,7 +30,5 @@
 
 				}else{
 
-						header('Location:../page/home.php');
+						header('Location:home');
 				}
-
-	 ?>

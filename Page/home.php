@@ -1,4 +1,4 @@
-    $blogList = $BlogRepository->getAllBlog();
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -149,10 +149,10 @@
         <hr class="star-light mb-5">
         <div class="row">
           <div class="col-lg-4 ml-auto">
-            <p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional LESS stylesheets for easy customization.</p>
+            <p class="lead">Strasbourgeois exilé en Bretagne, je suis un jeune développeur cherchant à acquérir toujours plus de compétences dans le domaine numérique. </p>
           </div>
           <div class="col-lg-4 mr-auto">
-            <p class="lead">Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
+            <p class="lead">Freelancer depuis 1 ans , j'ai été amené à travaillé sur diverses projets</p>
           </div>
         </div>
         <div class="text-center mt-4">
@@ -312,7 +312,7 @@
 				  <!-- add comment by visitor -->
 					<?php
 					if(($_SESSION['Level'] == 1) || ($_SESSION['Level'] == 2)){?>
-						   <form name="inscription" method="post" action="controleur/controleurCommentaire.php">
+						   <form name="inscription" method="post" action="controllerComment">
 
 							Saississez votre commentaire <br/>
 

@@ -59,4 +59,3 @@
 if ($_POST['type'] == "delete"){
 
 }
-	 ?>

@@ -3,7 +3,7 @@
     <body>
         <h1>Inscrivez-vous</h1>
         <h2>Rentrez vos identifiant</h2>
-        <form name="inscription" method="post" action="../controleur/controleurUser.php">
+        <form name="inscription" method="post" action="controllerUser">
 
 			Entrez votre nom : <input type="text" name="nom"/> <br/>
             Entrez votre prénom : <input type="text" name="prenom"/><br/>

@@ -1,30 +1,20 @@
 <?php
 require('vendor/autoload.php');
 
-include('repository/cobdd.php');
-include("repository/Identifiant.php");
-require("repository/blogpostRepository.php");
-include("repository/ComRepository.php");
-include('repository/UserRepository.php');
-
-include('model/Commentaire.php');
-include('model/Blog.php');
-include('model/User.php');
-
 
 $router = new App\Router\Router($_GET['url']);
 
-$router->get('/',function(){require ('page/home.php');});
-$router->get('/home',function(){require ('page/home.php');});
-$router->get('/edit',function(){require ('page/formedit.php');});
-$router->get('/connexion',function(){require ('page/formco.php');});
-$router->get('/ajout',function(){require ('page/formajout.php');});
-$router->get('/inscription',function(){require ('page/forminscription.php');});
-$router->get('deconnexion',function(){require('repository/Deconnexion.php');});
+$router->get('/',function(){require('page/home.php');});
+$router->get('/home',function(){require('page/home.php');});
+$router->get('/edit',function(){require('page/formEdit.php');});
+$router->get('/connexion',function(){require('page/formConnection.php');});
+$router->get('/ajout',function(){require('page/formAdd.php');});
+$router->get('/inscription',function(){require('page/formInscription.php');});
+$router->get('/deconnexion',function(){require('repository/Deconnection.php');});
 
-$router->post('controleurUser',function(){require('controleur/controleuruser.php');});
-$router->post('controleurBlogpost',function(){require('controleur/controleurblogpost.php');});
-$router->post('controleurCommentaire',function(){require('controleur/controleurCommentaire.php');});
+$router->post('/controllerUser',function(){require('controller/controllerUser.php');});
+$router->post('/controllerBlogpost',function(){require('controller/controllerBlogpost.php');});
+$router->post('/controllerComment',function(){require('controller/controllerComment.php');});
 
 
 

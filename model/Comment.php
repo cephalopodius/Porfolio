@@ -1,6 +1,6 @@
 <?php
 
-  	class Commentaire{
+  	class Comment{
       private $id_Com;
       private $Validation;
       private $TextCom;
@@ -57,4 +57,4 @@
       }
     }
 
- ?>
+ 

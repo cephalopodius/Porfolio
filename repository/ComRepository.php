@@ -15,7 +15,7 @@
 
         $comList = array();
           foreach ($result as $key => $value) {
-            $com = new Commentaire($value['id_Com'],$value['Validation'],$value['TextCom'],$value['Datecom'],$value['id_User'],$value['id_Blog']);
+            $com = new Comment($value['id_Com'],$value['Validation'],$value['TextCom'],$value['Datecom'],$value['id_User'],$value['id_Blog']);
             $comList[$key] = $com;
         }
         return $comList;
@@ -26,14 +26,14 @@
       }
     }
 
-    public function addCom($currentCommentaire){
+    public function addCom($currentComment){
 			try{
 				$db = new Connection();
 				$query= $db->openConnection()->prepare('INSERT INTO commentaire(DateCom, TextCom, Validation, id_User,id_Blog) VALUES(NOW(), :TextCom, :Validation, :id_User, :id_Blog)');
-				$query->bindValue(':TextCom',$currentCommentaire->getTextCom(), PDO::PARAM_STR);
-				$query->bindValue(':Validation',$currentCommentaire->getValidation(), PDO::PARAM_STR);
-				$query->bindValue(':id_User',$currentCommentaire->getIdUser(), PDO::PARAM_STR);
-				$query->bindValue(':id_Blog',$currentCommentaire->getIdBlog(), PDO::PARAM_INT);
+				$query->bindValue(':TextCom',$currentComment->getTextCom(), PDO::PARAM_STR);
+				$query->bindValue(':Validation',$currentComment->getValidation(), PDO::PARAM_STR);
+				$query->bindValue(':id_User',$currentComment->getIdUser(), PDO::PARAM_STR);
+				$query->bindValue(':id_Blog',$currentComment->getIdBlog(), PDO::PARAM_INT);
 				$query->execute();
 			}
 			catch (PDOException $e)
@@ -42,15 +42,15 @@
 			}
     }
 
-		public function editCom($currentCommentaire){
+		public function editCom($currentComment){
 			try{
 					$db = new Connection();
 					$query=$db->openConnection()->prepare('UPDATE commentaire SET  DateCom=NOW(), TextCom= :TextCom, Validation= :Validation, id_User=:id_User, id_Blog= :id_Blog WHERE id_Com =:id_Com');
-					$query->bindParam(':id_Com',$currentCommentaire->getIdCom(), PDO::PARAM_STR);
-					$query->bindParam(':TextCom',$currentCommentaire->getTextCom(), PDO::PARAM_STR);
-					$query->bindParam(':Validation',$currentCommentaire->getValidation(), PDO::PARAM_STR);
-					$query->bindParam(':id_Blog',$currentCommentaire->getIdBlog(), PDO::PARAM_STR);
-					$query->bindParam(':id_User',$currentCommentaire->getIdUser(), PDO::PARAM_INT);
+					$query->bindParam(':id_Com',$currentComment->getIdCom(), PDO::PARAM_STR);
+					$query->bindParam(':TextCom',$currentComment->getTextCom(), PDO::PARAM_STR);
+					$query->bindParam(':Validation',$currentComment->getValidation(), PDO::PARAM_STR);
+					$query->bindParam(':id_Blog',$currentComment->getIdBlog(), PDO::PARAM_STR);
+					$query->bindParam(':id_User',$currentComment->getIdUser(), PDO::PARAM_INT);
 					$query->execute();
 
 				}
