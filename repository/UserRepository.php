@@ -37,14 +37,13 @@
       {
         $message = "<p>Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe ou l'adresse mail entrée n\'est pas correcte.</p><p>Cliquez <a href='./connexion.php'>ici</a>
         pour revenir à la page précédente
-        <br /><br />Cliquez <a href='../page/home.php'>ici</a>
+        <br /><br />Cliquez <a href='home'>ici</a>
         pour revenir à la page d accueil</p>";
       }
 
       $query->CloseCursor();
 
 }
-
       public function inscription($currentUser){
 
         $db = new Connection();
