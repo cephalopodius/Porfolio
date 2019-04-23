@@ -1,25 +1,23 @@
 <?php
-
   	class Comment{
-      private $id_Com;
+      private $idCom;
       private $Validation;
       private $TextCom;
       private $DateCom;
-      private $id_User;
-      private $id_Blog;
+      private $idUser;
+      private $idBlog;
 
       public function __construct($id_Com,$Validation,$TextCom,$DateCom,$id_user,$id_blog){
-        $this->id_Com = $id_Com;
+        $this->idCom = $id_Com;
         $this->Validation = $Validation;
         $this->TextCom = $TextCom;
         $this->DateCom = $DateCom;
-        $this->id_User = $id_user;
-        $this->id_Blog = $id_blog;
-
+        $this->idUser = $id_user;
+        $this->idBlog = $id_blog;
       }
 
       public function getIdCom(){
-        return $this->id_Com;
+        return $this->idCom;
       }
       public function getValidation(){
         return $this->Validation;
@@ -31,14 +29,13 @@
         return $this->DateCom;
       }
       public function getIdUser(){
-        return $this->id_User;
+        return $this->idUser;
       }
       public function getIdBlog(){
-        return $this->id_Blog;
+        return $this->idBlog;
       }
-
       public function setIdCom($Id_Com){
-        $this->$id_Com = $Id_Com;
+        $this->$idCom = $Id_Com;
       }
       public function setValidation($Validation){
         $this->Validation = $Validation;
@@ -50,11 +47,9 @@
         $this->DateCom = $DateCom;
       }
       public function setIdUser($id_user){
-        $this->id_User = $id_user;
+        $this->idUser = $id_user;
       }
       public function setIdBlog($id_blog){
-        $this->id_Blog = $id_blog;
+        $this->idBlog = $id_blog;
       }
     }
-
- 

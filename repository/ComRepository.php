@@ -1,8 +1,6 @@
 <?php
-
-
 	class ComRepository{
-
+		
     public function __construct(){
     }
 
@@ -35,11 +33,14 @@
 				$query->bindValue(':id_User',$currentComment->getIdUser(), PDO::PARAM_STR);
 				$query->bindValue(':id_Blog',$currentComment->getIdBlog(), PDO::PARAM_INT);
 				$query->execute();
+				$test =true;
 			}
 			catch (PDOException $e)
 			{
 			    echo "There is some problem in connection: " . $e->getMessage();
+					$test=false;
 			}
+			return $test;
     }
 
 		public function editCom($currentComment){
@@ -52,15 +53,12 @@
 					$query->bindParam(':id_Blog',$currentComment->getIdBlog(), PDO::PARAM_STR);
 					$query->bindParam(':id_User',$currentComment->getIdUser(), PDO::PARAM_INT);
 					$query->execute();
-
 				}
-
 			catch (PDOException $e)
 			{
 					echo "There is some problem in connection: " . $e->getMessage();
 			}
 		}
-
 
 		public function deleteCom($id){
 			try{
@@ -68,17 +66,9 @@
 				$query->bindValue(':id_Com',$id, PDO::PARAM_STR);
 				$query->execute();
 			}
-
 			catch(PDOException $e)
 			{
 					echo "There is some problem in connection: " . $e->getMessage();
 			}
 		}
-
-
-
-
-
-
 }
-    ?>

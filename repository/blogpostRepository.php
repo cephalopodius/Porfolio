@@ -1,7 +1,5 @@
 <?php
-
-
-	class blogRepository{
+	class BlogRepository{
 
     public function __construct(){
     }
@@ -36,11 +34,14 @@
 				$query->bindValue(':image',$currentBlog->getImage(), PDO::PARAM_STR);
 				$query->bindValue(':id_Admin',$currentBlog->getIdAdmin(), PDO::PARAM_INT);
 				$query->execute();
+				$test = true;
 			}
 			catch (PDOException $e)
 			{
 			    echo "There is some problem in connection: " . $e->getMessage();
+					$test=false;
 			}
+			return $test;
     }
 
 		public function editBlog($currentBlog){
@@ -54,15 +55,15 @@
 					$query->bindParam(':id_Admin',$currentBlog->getIdAdmin(), PDO::PARAM_INT);
 					$query->bindParam(':id_Blog',$currentBlog->getIdBlog(), PDO::PARAM_STR);
 					$query->execute();
-
+					$test = true;
 				}
-
 			catch (PDOException $e)
 			{
 					echo "There is some problem in connection: " . $e->getMessage();
+					$test = false;
 			}
+			return $test;
 		}
-
 
 		public function deleteBlog($id){
 			try{
@@ -71,11 +72,9 @@
 				$query->bindValue(':id_Blog',$id, PDO::PARAM_STR);
 				$query->execute();
 			}
-
 			catch(PDOException $e)
 			{
 					echo "There is some problem in connection: " . $e->getMessage();
 			}
 		}
 }
-?>

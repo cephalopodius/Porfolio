@@ -11,5 +11,7 @@
 			"App\\": "model"
 		}
 	},
-    "require": {}
+    "require": {
+        "twig/twig": "^2.0"
+    }
 }

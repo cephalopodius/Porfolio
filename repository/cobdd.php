@@ -23,5 +23,3 @@ Class Connection {
 	 	$this->con = null;
 	}
 }
-
-?>

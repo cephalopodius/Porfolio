@@ -1,0 +1,37 @@
+<html>
+  <head>
+	{% block meta %}
+    {% include ('meta.twig') %}
+  {% endblock %}
+  <title>Inscription</title>
+</head>
+<body>
+    {% block navbar %}
+      {% include ('navbar.twig') %}
+    {% endblock %}
+      <header class="masthead bg-primary text-white text-center">
+        <div class="container">
+        <h1>Inscrivez-vous</h1>
+        <h2>Rentrez vos identifiant</h2>
+        <form name="inscription" method="post" action="checkSignIn">
+			      Entrez votre nom : <input type="text" name="nom"/> <br/>
+            Entrez votre prénom : <input type="text" name="prenom"/><br/>
+            Entrez votre adresse mail : <input type="mail" name="mail"/> <br/>
+            Entrez votre mot de passe : <input type="password" name="password"/><br/>
+            <input type="hidden" name="type" value="inscription"/>
+            <input type="submit" name="valider" value="OK"/>
+        </form>
+      </div>
+      </header>
+      <footer class="footer text-center">
+        <div class="container">
+        <div class="row">
+              {% block footer %}
+                {% include ('footer.twig') %}
+              {% endblock %}
+            </div>
+          </div>
+            </div>
+  </footer>
+    </body>
+</html>

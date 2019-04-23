@@ -1,26 +1,31 @@
 <?php
-
 namespace App\Router;
-
 
 class Router {
 
   private $url;
   private $routes = [];
+  private $namedRoutes = [];
 
  public function __construct($url){
    $this->url = $url;
  }
 
- public function get($path, $callable){
-   $route = new Route($path, $callable);
-   $this->routes['GET'][] = $route;
+ public function get($path, $callable, $name = null){
+   return $this->add($path, $callable, $name, 'GET');
  }
- public function post($path, $callable){
-   $route = new Route($path, $callable);
-   $this->routes['POST'][] = $route;
+ public function post($path, $callable, $name = null){
+   return $this->add($path, $callable, $name, 'POST');
  }
 
+ public function add($path, $callable, $name, $method){
+   $route = new Route($path, $callable);
+   $this->routes[$method][] = $route;
+   if($name){
+     $this->$namedRoutes[$name] = $route;
+   }
+   return $route;
+ }
 
  public function run(){
 
@@ -36,9 +41,10 @@ class Router {
    throw new RouterException('No matching routes');
  }
 
- public function call(){
-   return call_user_func_array($this->callable, $this->matches);
-
+ public function url($name, $params = []){
+   if(!isset($this->$namedRoutes[$name])){
+     throw new RouterException('no route matches this name');
+   }
+   return $this->$namedRoutes[$name]->getUrl($params);
  }
 }
- 

@@ -1,0 +1,36 @@
+
+<html>
+<head>
+	{% block meta %}
+    {% include ('meta.twig') %}
+  {% endblock %}
+		<title>Ajout de blog</title>
+</head>
+    <body>
+			      {% block navbar %}
+			        {% include ('navbar.twig') %}
+			      {% endblock %}
+						<header class="masthead bg-primary text-white text-center">
+							<div class="container">
+					        <h1>Completez les champs</h1>
+					        <form name="inscription" method="post" action="checkadd">
+					 	        Modifier le titre : <input type="text" name="titre"/> <br/>
+							      Modifier le chapo : <input type="text" name="chapo"/><br/>
+										Modifier le contenu : <input type="text" name="content"/><br/>
+										Modifier l'image associée : <input type="text" name="image"/><br/>
+										<input type="hidden" name="type" value="addblog"/>
+				            <input type="submit" name="valider" value="OK"/>
+					        </form>
+								</header>
+							<footer class="footer text-center">
+								<div class="container">
+								<div class="row">
+											{% block footer %}
+												{% include ('footer.twig') %}
+											{% endblock %}
+										</div>
+									</div>
+										</div>
+					</footer>
+    </body>
+</html>

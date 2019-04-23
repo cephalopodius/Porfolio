@@ -1,13 +1,11 @@
 <?php
-
   	class User{
-      private $id_User;
+      private $idUser;
       private $prenom;
       private $nom;
       private $id_Admin;
       private $mail;
       private $password;
-
 
       public function __construct($id_User,$prenom,$nom,$id_Admin,$mail,$password){
         $this->idUser = $id_User;
@@ -16,9 +14,7 @@
         $this->idAdmin = $id_Admin;
         $this->mail = $mail;
         $this->password = $password;
-
       }
-
       public function getidUser(){
         return $this->idUser;
       }
@@ -39,7 +35,7 @@
       }
 
       public function setidUser($id_User){
-        $this->Titre = $id_User;
+        $this->Titre = $idUser;
       }
       public function setPrenom($prenom){
         $this->Chapo = $prenom;
@@ -56,7 +52,4 @@
       public function setPassword($password){
         $this->id_Admin = $password;
       }
-
     }
-
- 

@@ -1,5 +1,4 @@
 <?php
-
   	class Blog{
       private $Titre;
       private $Chapo;
@@ -7,7 +6,7 @@
       private $Image;
       private $Date;
       private $id_Admin;
-      private $id_Blog;
+      private $idBlog;
 
       public function __construct($titre,$chapo,$contenu,$image,$date,$id_admin,$id_blog){
         $this->Titre = $titre;
@@ -16,8 +15,7 @@
         $this->Image = $image;
         $this->Date = $date;
         $this->id_Admin = $id_admin;
-        $this->id_Blog = $id_blog;
-
+        $this->idBlog = $id_blog;
       }
 
       public function getTitre(){
@@ -39,9 +37,8 @@
         return $this->id_Admin;
       }
       public function getIdBlog(){
-        return $this->id_Blog;
+        return $this->idBlog;
       }
-
       public function setTitre($titre){
         $this->Titre = $titre;
       }
@@ -61,8 +58,6 @@
         $this->id_Admin = $id_admin;
       }
       public function setIdBlog($id_blog){
-        $this->id_Blog = $id_blog;
+        $this->idBlog = $id_blog;
       }
     }
-
- 

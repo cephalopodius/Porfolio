@@ -1,10 +1,8 @@
 <?php
-
 	class UserRepository{
 
     public function __construct(){
     }
-
       public function connection($currentUser){
 
       $db = new Connection();
@@ -14,37 +12,26 @@
       $query->execute();
       $data=$query->fetch();
 
-
       if ($data['Mail'] == ($currentUser->getMail()) && $data['Password'] == ($currentUser->getPassword())) // Access OK !
       {
-
         if($data['id_Admin']== 1){
-
           $_SESSION['Level'] = 2;
-
         }else{
-
         $_SESSION['Level'] = 1;
-
         }
-
-        $_SESSION['prenom'] = $data['prenom'];
-        $_SESSION['nom'] = $data['nom'];
+        //$_SESSION['prenom'] = $data['prenom'];
+      //  $_SESSION['nom'] = $data['nom'];
         $_SESSION['id_User'] = $data['id_User'];
-
+				$test = true;
       }
       else // Access not OK !
       {
-        $message = "<p>Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe ou l'adresse mail entrée n\'est pas correcte.</p><p>Cliquez <a href='./connexion.php'>ici</a>
-        pour revenir à la page précédente
-        <br /><br />Cliquez <a href='home'>ici</a>
-        pour revenir à la page d accueil</p>";
+        $test = false;
       }
-
       $query->CloseCursor();
-
+			return $test;
 }
-      public function inscription($currentUser){
+      public function register($currentUser){
 
         $db = new Connection();
         $query= $db->openConnection()->prepare('INSERT INTO user(nom, prenom, Mail, Password) VALUES(:nom, :prenom, :Mail, :Password)');
@@ -55,18 +42,17 @@
 
         $query->execute();
 
+				$test=true;
         UserRepository::connection($currentUser);
+				return $test;
       }
 
       public function deconnection(){
 
         session_start();
-
         session_destroy();
-
-          header('Location:../page/home.php');
+        header('Location:test.php');
           exit();
-
       }
       //used for matching com and user, to provide name on modal com's window
       public function getUserList(){
@@ -87,8 +73,24 @@
         {
             echo "There is some problem in connection: " . $e->getMessage();
         }
-
-
       }
-}
-    ?>
+//used for check which kind of user is connected
+			  public function getSecurityLevel(){
+						$level='';
+					if( isset($_SESSION['Level']) ){
+						 if($_SESSION['Level'] == 1){
+							 $level = 1;
+						 }
+						 if($_SESSION['Level'] == 2){
+							 $level = 2;
+						 }
+						 if($_SESSION['Level'] == 0){
+							$level = 0;
+						}
+					}else{
+						$_SESSION['Level'] == 0;
+						$level=0;
+					}
+					return $level;
+       }
+	 }
