@@ -23,7 +23,10 @@ class ComposerStaticInit8252dca28fcf1b783a4ba50cd7e058bf
         ),
         'A' => 
         array (
-            'App\\' => 4,
+            'App\\Repository\\' => 15,
+            'App\\Model\\Router\\' => 17,
+            'App\\Model\\' => 10,
+            'App\\Controller\\' => 15,
         ),
     );
 
@@ -40,9 +43,21 @@ class ComposerStaticInit8252dca28fcf1b783a4ba50cd7e058bf
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
-        'App\\' => 
+        'App\\Repository\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/model',
+            0 => __DIR__ . '/../..' . '/Repository',
+        ),
+        'App\\Model\\Router\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Model/Router',
+        ),
+        'App\\Model\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Model',
+        ),
+        'App\\Controller\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Controller',
         ),
     );
 

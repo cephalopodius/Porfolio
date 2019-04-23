@@ -1,5 +1,8 @@
 <?php
-Class Connection {
+namespace App\Repository;
+use \PDO;
+
+class Connection {
 	private  $server = "localhost";
 	private  $dbname = "porfolio oc";
 	private  $user = "root";
@@ -8,7 +11,7 @@ Class Connection {
 
 	public function openConnection() {
 		try {
-			$pdo = new PDO("mysql:host=".$this->server.";dbname=".$this->dbname, $this->user, $this->pass);
+			$pdo = new \PDO("mysql:host=".$this->server.";dbname=".$this->dbname, $this->user, $this->pass);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$pdo->setAttribute(PDO::MYSQL_ATTR_INIT_COMMAND, "SET NAMES 'utf8'");
 			$pdo->exec("SET CHARACTER SET utf8");

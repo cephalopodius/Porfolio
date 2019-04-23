@@ -1,4 +1,5 @@
 <?php
+namespace App\Controller;
 
 class FrontController extends Controller{
 
@@ -7,9 +8,10 @@ class FrontController extends Controller{
   private $comRepository;
 
   public function __construct(){
-    $this->blogRepository = new BlogRepository();
-    $this->comRepository = new ComRepository();
-    $this->userRepository = new UserRepository();
+
+    $this->blogRepository = new \App\Repository\BlogRepository();
+    $this->comRepository = new \App\Repository\ComRepository();
+    $this->userRepository = new \App\Repository\UserRepository();
   }
   public function home(){
 
@@ -57,7 +59,7 @@ class FrontController extends Controller{
         'security' => $security
       ]);
   }
-  public function inscription(){
+  public function register(){
 
     $security = $this->userRepository->getSecurityLevel();
     $userList = $this->userRepository->getUserList();

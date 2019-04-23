@@ -4,19 +4,4 @@
 
 require_once __DIR__ . '/composer/autoload_real.php';
 
-
-include('Repository/Cobdd.php');
-include("Repository/Login.php");
-require("Repository/BlogpostRepository.php");
-include("Repository/ComRepository.php");
-include('Repository/UserRepository.php');
-
-include('Controller/Controller.php');
-include('Controller/FrontController.php');
-include('Controller/BackController.php');
-
-include('Model/Comment.php');
-include('Model/Blog.php');
-include('Model/User.php');
-
 return ComposerAutoloaderInit8252dca28fcf1b783a4ba50cd7e058bf::getLoader();

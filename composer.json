@@ -8,7 +8,10 @@
     ],
 	"autoload": {
 		"psr-4":{
-			"App\\": "model"
+      "App\\Controller\\": "Controller",
+			"App\\Model\\Router\\": "Model/Router",
+      "App\\Repository\\": "Repository",
+      "App\\Model\\": "Model"
 		}
 	},
     "require": {

@@ -2,15 +2,15 @@
 session_start();
 require('vendor/autoload.php');
 
-//routing
-$router = new App\Router\Router($_GET['url']);
+use App\Controller\FrontController;
+use App\Controller\BackController;
 
+//routing
+$router = new App\Model\Router\Router($_GET['url']);
 
 //$router->get('/posts/:page', "Posts#show");
 //$router->get('/controlleurConnection/:page', "Posts#show");
-
 //$router->get('/posts/:page',function($page){});
-
 //$router->post('/posts/:page',function($page){require('controller/controller.php');});
 
 $router->get('/',function(){
