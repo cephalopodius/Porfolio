@@ -48,12 +48,12 @@ class BlogRepository{
 		try{
 				$db = new Connection();
 				$query=$db->openConnection()->prepare('UPDATE blog SET Titre=:Titre, date=NOW(), Chapo= :Chapo, Contenu= :Contenu, image=:image, id_Admin= :id_Admin WHERE id_Blog =:id_Blog');
-				$query->bindParam(':Titre',$currentBlog->getTitre(), PDO::PARAM_STR);
-				$query->bindParam(':Chapo',$currentBlog->getChapo(), PDO::PARAM_STR);
-				$query->bindParam(':Contenu',$currentBlog->getContenu(), PDO::PARAM_STR);
-				$query->bindParam(':image',$currentBlog->getImage(), PDO::PARAM_STR);
-				$query->bindParam(':id_Admin',$currentBlog->getIdAdmin(), PDO::PARAM_INT);
-				$query->bindParam(':id_Blog',$currentBlog->getIdBlog(), PDO::PARAM_STR);
+				$query->bindValue(':Titre',$currentBlog->getTitre(), PDO::PARAM_STR);
+				$query->bindValue(':Chapo',$currentBlog->getChapo(), PDO::PARAM_STR);
+				$query->bindValue(':Contenu',$currentBlog->getContenu(), PDO::PARAM_STR);
+				$query->bindValue(':image',$currentBlog->getImage(), PDO::PARAM_STR);
+				$query->bindValue(':id_Admin',$currentBlog->getIdAdmin(), PDO::PARAM_INT);
+				$query->bindValue(':id_Blog',$currentBlog->getIdBlog(), PDO::PARAM_STR);
 				$query->execute();
 				$test = true;
 			}
