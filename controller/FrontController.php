@@ -68,4 +68,18 @@ class FrontController extends Controller{
         'security' => $security
       ]);
   }
+  public function valideCom(){
+
+  $userList = $this->userRepository->getUserList();
+  $blogList = $this->blogRepository->getAllBlog();
+  $comList = $this->comRepository->getAllCom();
+  $security = $this->userRepository->getSecurityLevel();
+
+    echo  $template = $this->loadTwig()->render('valideCom.twig', [
+      'blog' => $blogList,
+      'com'  => $comList,
+      'user' => $userList,
+      'security' => $security
+    ]);
+}
 }

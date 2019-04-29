@@ -104,9 +104,33 @@ class BackController extends Controller{
       header('Location:home');
       }
 
-      public function deleteBlog($id_Blog){
+      public function deleteBlog($id_Blog,$validation){
 
+      if($validation != "EFFACER"){
+        $message = '<p>erreur dans la saisie "EFFACER"</p>
+        <p>Cliquez <a href="home">ici</a> pour revenir</p>';
+
+      }else{
         $this->repository=new \App\Repository\BlogRepository();
-    		$this->repository->deleteBlog($id_Blog);
-    	}
+        $this->repository->deleteBlog($id_Blog);
+        $message = '<p>Blog supprimé.</p>
+        <p>Cliquez <a href="home">ici</a> pour revenir</p>';
+      }
+      echo $message;
+      }
+      public function valideCom($idCom,$checked){
+
+      if(isset($checked)){
+        $this->repository=new \App\Repository\ComRepository();
+        $this->repository->valideCom($idCom);
+        $message = '<p>commentaire autorisé.</p>
+        <p>Cliquez <a href="home">ici</a> pour revenir</p>';
+      }else{
+        $this->repository=new \App\Repository\ComRepository();
+        $this->repository->deleteCom($idCom);
+        $message = '<p>commentaire effacer.</p>
+        <p>Cliquez <a href="home">ici</a> pour revenir</p>';
+      }
+      echo $message;
+    }
 	 }

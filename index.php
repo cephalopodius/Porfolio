@@ -55,7 +55,7 @@ $router->post('/checkSignIn',function(){
 });
 $router->post('/deleteBlog',function(){
   $BackController = new BackController();
-  $BackController->deleteBlog($_POST['idBlog']);
+  $BackController->deleteBlog($_POST['idBlog'],$_POST['validation']);
 });
 $router->post('/checkEdit',function(){
   $BackController = new BackController();
@@ -64,5 +64,13 @@ $router->post('/checkEdit',function(){
 $router->post('/checkComment',function(){
   $BackController = new BackController();
   $BackController->addComment($_POST['comContent'],$_POST['id_Blog']);
+});
+$router->get('/valideCom',function(){
+  $FrontController = new FrontController();
+  $FrontController->valideCom();
+});
+$router->post('/valideCom',function(){
+  $BackController = new BackController();
+  $BackController->valideCom($_POST['idCom'],$_POST['checked']);
 });
 $router->run();

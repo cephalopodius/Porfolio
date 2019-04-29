@@ -4,9 +4,20 @@ use \PDO;
 class ComRepository{
 
   public function getAllCom(){
+//checking if admin, to show comment waiting validation or not
+if(isset($_SESSION['Level'])){
+  if($_SESSION['Level'] == 2){
+    $validation =0;
+  }else{
+    $validation=1;
+  }
+}else{
+  $validation=1;
+}
+
     try{
       $db = new Connection();
-      $query= $db->openConnection()->prepare('SELECT * FROM commentaire WHERE Validation = 1');
+      $query= $db->openConnection()->prepare('SELECT * FROM commentaire WHERE Validation = '.$validation.'');
       $query->execute();
       $result = $query->fetchAll();
 
@@ -61,7 +72,21 @@ class ComRepository{
 
 	public function deleteCom($id){
 		try{
-			$query=$db->prepare('DELETE FROM commentaire WHERE id_Com = :id_Com');
+      $db = new Connection();
+			$query=$db->openConnection()->prepare('DELETE FROM commentaire WHERE id_Com = :id_Com');
+			$query->bindValue(':id_Com',$id, PDO::PARAM_STR);
+			$query->execute();
+		}
+		catch(PDOException $e)
+		{
+				echo "There is some problem in connection: " . $e->getMessage();
+		}
+	}
+
+  public function valideCom($id){
+		try{
+      $db = new Connection();
+			$query=$db->openConnection()->prepare('UPDATE commentaire SET Validation= 1 WHERE id_Com = :id_Com');
 			$query->bindValue(':id_Com',$id, PDO::PARAM_STR);
 			$query->execute();
 		}

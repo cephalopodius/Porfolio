@@ -88,7 +88,6 @@ class UserRepository{
 				$level = 0;
 			}
 		}else{
-			$_SESSION['Level'] == 0;
 			$level=0;
 		}
 		return $level;

@@ -1,0 +1,50 @@
+
+<html>
+<head>
+		{% block meta %}
+	    {% include ('meta.twig') %}
+	  {% endblock %}
+	<title>Valider les commentaires</title>
+</head>
+    <body id="page-top">
+			{% block navbar %}
+				{% include ('navbar.twig') %}
+			{% endblock %}
+			<header class="masthead bg-primary text-white text-center">
+				<div class="container">
+        <h1>Liste de commentaires à valider</h1>
+        <h3>Cocher la case pour valider, ne pas la cocher effacera le commentaire après envois</h3>
+			{% block listblog %}
+
+             {% for coms in com %}
+               {% for users in user %}
+                {% if users.idUser == coms.idUser %}
+                <div>De {{ users.nom }}  {{ users.prenom }} le {{ coms.DateCom }} </div>
+                <div>{{ coms.TextCom }}</div>
+                <form name="edit-blog-{{ blogs.idBlog }}" method="post" action="valideCom">
+                  <p>
+                  </br>
+                    <input type="checkbox"  name="checked">
+                      <label for="validation">Soumettre</label>
+                    <input type="hidden" name="idCom" value="{{ coms.idCom }}"/>
+                    <input type="submit" name="valider" value="Valider"/>
+                  </p>
+                </form>
+                </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+			{% endblock  %}
+</div>
+</header>
+<footer class="footer text-center">
+	<div class="container">
+<div class="row">
+		{% block footer %}
+			{% include ('footer.twig') %}
+		{% endblock %}
+	</div>
+</div>
+	</footer>
+    </body>
+</html>
