@@ -68,8 +68,9 @@ class BackController extends Controller{
 
     public function addUser($nom,$prenom,$mail,$password){
 
+      $safePassword = password_hash($password,PASSWORD_DEFAULT,['cost' => 12]);
       $this->repository=new \App\Repository\UserRepository();
-      $user = new \App\Model\User('',$prenom,$nom,'',$mail,$password);
+      $user = new \App\Model\User('',$prenom,$nom,'',$mail,$safePassword);
       $test=$this->repository->register($user);
       if ($test == true){
         $message = '<p>inscription effectuée </p>

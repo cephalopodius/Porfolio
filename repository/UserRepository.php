@@ -5,14 +5,14 @@ class UserRepository{
 
   public function connection($currentUser){
 
+  $hash='$2y$12$GBXH3UwCFImvtdiJtJZf3em5r8Z6.fN4mTM/tDtYcKTjPUsqcJ5mi';
+
   $db = new Connection();
-  $query= $db->openConnection()->prepare('SELECT Mail, id_User , id_Admin ,Password ,prenom,nom FROM User WHERE Mail = :mail AND Password = :password');
+  $query= $db->openConnection()->prepare('SELECT Mail, id_User , id_Admin ,Password ,prenom,nom FROM User WHERE Mail = :mail ');
   $query->bindValue(':mail',$currentUser->getMail(), PDO::PARAM_STR);
-  $query->bindValue(':password',$currentUser->getPassword(), PDO::PARAM_STR);
   $query->execute();
   $data=$query->fetch();
-
-  if ($data['Mail'] == ($currentUser->getMail()) && $data['Password'] == ($currentUser->getPassword())) // Access OK !
+  if ($data['Mail'] == ($currentUser->getMail()) && $data['Password'] == password_verify($currentUser->getPassword(),$hash)) // Access OK !
   {
     if($data['id_Admin']== 1){
       $_SESSION['Level'] = 2;
