@@ -5,14 +5,15 @@ class UserRepository{
 
   public function connection($currentUser){
 
-  $hash='$2y$12$GBXH3UwCFImvtdiJtJZf3em5r8Z6.fN4mTM/tDtYcKTjPUsqcJ5mi';
+
 
   $db = new Connection();
   $query= $db->openConnection()->prepare('SELECT Mail, id_User , id_Admin ,Password ,prenom,nom FROM User WHERE Mail = :mail ');
   $query->bindValue(':mail',$currentUser->getMail(), PDO::PARAM_STR);
   $query->execute();
   $data=$query->fetch();
-  if ($data['Mail'] == ($currentUser->getMail()) && $data['Password'] == password_verify($currentUser->getPassword(),$hash)) // Access OK !
+
+  if (($data['Mail'] == ($currentUser->getMail())) && (password_verify($currentUser->getPassword(),$data['Password']))== TRUE ) // Access OK !
   {
     if($data['id_Admin']== 1){
       $_SESSION['Level'] = 2;
@@ -24,7 +25,7 @@ class UserRepository{
     $_SESSION['id_User'] = $data['id_User'];
 		$test = true;
   }
-  else // Access not OK !
+  else // Access not OK !*
   {
     $test = false;
   }
@@ -76,7 +77,7 @@ class UserRepository{
   }
 //used for check which kind of user is connected
   public function getSecurityLevel(){
-			$level='';
+		$level='';
 		if( isset($_SESSION['Level']) ){
 			 if($_SESSION['Level'] == 1){
 				 $level = 1;
@@ -91,5 +92,5 @@ class UserRepository{
 			$level=0;
 		}
 		return $level;
- }
+  }
  }

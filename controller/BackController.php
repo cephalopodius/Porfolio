@@ -8,13 +8,14 @@ class BackController extends Controller{
   public function connection($mail,$password){
 
     $this->repository=new \App\Repository\UserRepository();
-    if ($mail || $password ) //checking void field
+    if ($mail && $password)  //checking void field
     {
       $user = new \App\Model\User('','','','',$mail,$password);
       $test=$this->repository->connection($user);
       if ($test == true){
         $message = '<p>Vous êtes connecté </p>
       <p>Cliquez <a href="home">ici</a> pour revenir</p>';
+      echo $_SESSION['Level'] ;
       }else{
         $message ="<p>Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe ou l'adresse mail entrée n\'est pas correcte.</p><p>Cliquez <a href='connection'>ici</a>
         pour revenir à la page précédente
