@@ -15,7 +15,7 @@ class BackController extends Controller{
       if ($test == true){
         $message = '<p>Vous êtes connecté </p>
       <p>Cliquez <a href="home">ici</a> pour revenir</p>';
-      echo $_SESSION['Level'] ;
+
       }else{
         $message ="<p>Une erreur s\'est produite pendant votre identification.<br /> Le mot de passe ou l'adresse mail entrée n\'est pas correcte.</p><p>Cliquez <a href='connection'>ici</a>
         pour revenir à la page précédente
@@ -69,9 +69,9 @@ class BackController extends Controller{
 
     public function addUser($nom,$prenom,$mail,$password){
 
-      $safePassword = password_hash($password,PASSWORD_DEFAULT,['cost' => 12]);
+      
       $this->repository=new \App\Repository\UserRepository();
-      $user = new \App\Model\User('',$prenom,$nom,'',$mail,$safePassword);
+      $user = new \App\Model\User('',$prenom,$nom,'',$mail,$password);
       $test=$this->repository->register($user);
       if ($test == true){
         $message = '<p>inscription effectuée </p>

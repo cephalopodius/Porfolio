@@ -2,7 +2,10 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/model" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller" isTestSource="false" packagePrefix="App\Controller\" />
+      <sourceFolder url="file://$MODULE_DIR$/Model/Router" isTestSource="false" packagePrefix="App\Model\Router\" />
+      <sourceFolder url="file://$MODULE_DIR$/Repository" isTestSource="false" packagePrefix="App\Repository\" />
+      <sourceFolder url="file://$MODULE_DIR$/Model" isTestSource="false" packagePrefix="App\Model\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-ctype" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/polyfill-mbstring" />

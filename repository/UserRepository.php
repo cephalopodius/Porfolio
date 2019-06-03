@@ -35,12 +35,14 @@ class UserRepository{
 
   public function register($currentUser){
 
+    $safePassword = password_hash($currentUser->getPassword(),PASSWORD_DEFAULT,['cost' => 12]);
+
 			$db = new Connection();
 			$query= $db->openConnection()->prepare('INSERT INTO user(nom, prenom, Mail, Password) VALUES(:nom, :prenom, :Mail, :Password)');
 			$query->bindValue(':nom',$currentUser->getNom(), \PDO::PARAM_STR);
 			$query->bindValue(':prenom',$currentUser->getPrenom(), \PDO::PARAM_STR);
 			$query->bindValue(':Mail',$currentUser->getMail(), \PDO::PARAM_STR);
-			$query->bindValue(':Password',$currentUser->getPassword(), \PDO::PARAM_STR);
+			$query->bindValue(':Password',$safePassword, \PDO::PARAM_STR);
 			$query->execute();
 			$test=true;
 

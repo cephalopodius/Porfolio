@@ -19,10 +19,11 @@
 				<div class="col-12 col-sm-6 col-lg-4 offset-4">
 			        <form name="edit-blog-{{ blogs.idBlog }}" method="post" action="checkEdit">
 								<p>
-									Blog numéro : {{ blogs.idBlog }} <br/>
-						      Entrez le titre : <input type="text" name="titre" size="20" value="{{ blogs.Titre }}"/> <br/>
-						      Entrez le chapo : <input type="text" name="chapo" size="20" value="{{ blogs.Chapo }}"/> <br/>
-									Entrez le contenu : <input type="text" name="contenu" size="80" value="{{ blogs.Contenu }}"/> <br/>
+									Blog numéro : {{ blogs.idBlog }} <br/><br/>
+						      Entrez le titre : <input type="text" name="titre" size="20" value="{{ blogs.Titre }}"/> <br/><br/>
+						      Entrez le chapo : <input type="text" name="chapo" size="20" value="{{ blogs.Chapo }}"/> <br/><br/>
+									Entrez le contenu :
+									 <textarea class="form-control" name="contenu" rows="3">{{ blogs.Contenu }}</textarea><br/>
 									Entrez l'image associée : <input type="text" name="image" value="{{ blogs.image }}"/><br/>
 									<input type="hidden" name="idBlog" value="{{ blogs.idBlog }}"/>
 									<input type="hidden" name="type" value="editblog"/>
@@ -38,6 +39,7 @@
 			            <input type="submit" name="valider" value="Supprimer"/>
 				        </form>
 							</div>
+							<hr style="height: 3px; color: black; width: 50%; border: 1px dashed #000;">
 			  {% endfor %}
 			{% endblock  %}
 </div>
