@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 03 juin 2019 à 14:08
--- Version du serveur :  5.7.19
--- Version de PHP :  7.1.9
+-- Généré le :  mar. 11 août 2020 à 09:40
+-- Version du serveur :  5.7.26
+-- Version de PHP :  7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,6 +25,73 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id_Admin` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_Admin`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `admin`
+--
+
+INSERT INTO `admin` (`id_Admin`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `blog`
+--
+
+DROP TABLE IF EXISTS `blog`;
+CREATE TABLE IF NOT EXISTS `blog` (
+  `id_Blog` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Titre` varchar(100) NOT NULL,
+  `date` datetime(6) NOT NULL,
+  `Chapo` varchar(40) NOT NULL,
+  `Contenu` varchar(250) NOT NULL,
+  `id_Admin` mediumint(8) UNSIGNED NOT NULL,
+  `image` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_Blog`),
+  KEY `id_Admin` (`id_Admin`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `blog`
+--
+
+INSERT INTO `blog` (`id_Blog`, `Titre`, `date`, `Chapo`, `Contenu`, `id_Admin`, `image`) VALUES
+(2, 'Dr Games', '2020-08-06 15:56:49.000000', 'Project en polymer', 'Un projet réalisé au sein de l\'entreprise TRM. Réalisé en équipe et avec le framework polymer pour le développeur de jeux sur mobile Dr.Games.', 1, 'asset/img/project/drGames.png'),
+(3, 'Wise wizards studio', '2020-08-06 16:03:54.000000', 'php from scratch', 'Site réalisé en freelance pour  wise wizards studio. Il fut réalisé en php et javascript from scratch', 1, 'asset/img/project/wisewizardsstudio.png'),
+(4, 'Taxi Courapied', '2020-08-06 16:12:44.000000', 'site réaliser from scratch', 'Site réalisé pour un taxi Lavallois', 1, 'asset/img/project/taxicourapied.png'),
+(5, 'TRM', '2020-08-06 16:28:09.000000', 'site réalisé en php from scratch', 'Site réalisé pour la société TRM , et effectué lors d\'un stage dans la SFDN', 1, 'asset/img/project/TRM.png');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+DROP TABLE IF EXISTS `commentaire`;
+CREATE TABLE IF NOT EXISTS `commentaire` (
+  `id_Com` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `Datecom` datetime(6) NOT NULL,
+  `TextCom` varchar(255) NOT NULL,
+  `Validation` tinyint(1) UNSIGNED NOT NULL,
+  `id_User` mediumint(8) UNSIGNED NOT NULL,
+  `id_Blog` mediumint(8) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id_Com`),
+  KEY `id_User` (`id_User`),
+  KEY `id_Blog` (`id_Blog`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `user`
 --
 
@@ -37,28 +104,38 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Mail` varchar(150) NOT NULL,
   `Password` varchar(150) NOT NULL,
   PRIMARY KEY (`id_User`),
-  UNIQUE KEY `Mail` (`Mail`),
   KEY `id_Admin` (`id_Admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id_User`, `prenom`, `nom`, `id_Admin`, `Mail`, `Password`) VALUES
-(1, 'robin', 'campino', 1, 'campino.robin@hotmail.fr', '$2y$12$Gv1FdWmmQk7DUffmaASbbe/1Mow.e5dR/WcLj3K7sXBTomqiZWZzy'),
-(34, 'jesus', 'jesus', NULL, 'jesus@revient.sien', '$2y$12$AYX6OyDPcTbIrNEAy7Ohw.P8FqLw6igmVteQe3KAtCsrEC/kFKLna'),
-(35, 'roger', 'roger', NULL, 'roger@rabit.com', '$2y$12$GBXH3UwCFImvtdiJtJZf3em5r8Z6.fN4mTM/tDtYcKTjPUsqcJ5mi'),
-(36, 'ty', 'ty', NULL, 'ty@ty.ty', '$2y$12$HhuA3pOVTFnrfbX9pd/EguN1aRXAY0ztkZiQplhkE2f/foCAFNDmu'),
-(37, 'doom', 'doom', NULL, 'doom@doom.doom', '$2y$12$mnTXOexA9apqEmPPMeBR..QrOrTPg/Y0mFryzhns2XbwGyU4QorLy'),
-(38, 'ra', 'ra', NULL, 'ra@ra.ra', '$2y$12$Wr5G6Oct/ib75.dLr2TtNu9s4n1aYvB3CUN0itSB6apNnKrgdid2K'),
-(42, 'ru', 'ru', NULL, 'ru@ru.ru', '$2y$12$6AsaVJwH9PifTM5IweQATecuh0smR5I6ttEirkR6p0xzc2PwbNNHm'),
-(43, 'rez', 'rez', NULL, 'rez@rez.rez', '$2y$12$Iq0/lTBxb63c12ClT0rMHeFA3K8SCkDjnmfCTugZpmnu1XjDqljh2'),
-(44, 'robin', 'xxx', NULL, 'xxx@xx.com', '$2y$12$5cudr.8Z694MC.y4c35cR.TXfZEzILRkFF6iJTaIAfriyQCIQak/m'),
-(46, 'robin', 'pm', NULL, 'pm@pm.pm', '$2y$12$tdVHjz9FK3UVojg2K0aHb.8IpIGgryivZ3Zmx9a636jEuv6Sigbde'),
-(47, 'robin', 'xxxx', NULL, 'xxxx@x.x', '$2y$12$LD2pMjdljIIHVbuZHcVXe.njHkLp/xDRD0GHptJWomMVh4obmYHb6'),
-(48, 'robin', 'tui', NULL, 'tui@tui.tui', '$2y$12$/xDbrmQ3Lg6GkCPZ7i6ydOcQPZTHZMFmEfwnIacbK46LMDulq8Odi'),
-(49, 'robin', 'zer', NULL, 'zer@zer.zer', '$2y$12$zLk8c4vvUPMOIlRcJvgos.qxui0Fxe6.U4a3LoPnOQWcs/af0EYsi');
+(2, 'robin', 'campino', 1, 'campino.robin@hotmail.fr', '$2y$12$7ucUUSjXmi8sVGJKlW6nhOWKwaPdNUkrqxt0rTQPYFqrTkmJ4TVF.');
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`id_Admin`) REFERENCES `admin` (`id_Admin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`id_User`) REFERENCES `user` (`id_User`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `commentaire_ibfk_2` FOREIGN KEY (`id_Blog`) REFERENCES `blog` (`id_Blog`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`id_Admin`) REFERENCES `admin` (`id_Admin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
